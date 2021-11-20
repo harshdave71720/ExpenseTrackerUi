@@ -13,13 +13,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ExpensesPaginatorComponent } from './expenses-paginator/expenses-paginator.component';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ExpensesComponent,
     ExpenseComponent,
-    ExpensesPaginatorComponent
+    ExpensesPaginatorComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
