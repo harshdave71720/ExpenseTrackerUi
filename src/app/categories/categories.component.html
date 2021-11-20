@@ -1,1 +1,7 @@
-<p>categories works!</p>
+<div>
+    <div class="col-md-3">
+        <ul style="list-style-type: none;" class="col">
+            <app-category *ngFor="let category of categories" [category]="category">{{ category.name }}</app-category>
+        </ul>
+    </div>
+</div>

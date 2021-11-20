@@ -14,6 +14,7 @@ import { ExpensesPaginatorComponent } from './expenses-paginator/expenses-pagina
 
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategoriesComponent } from './categories/categories.component';
+import { CategoryComponent } from './category/category.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { CategoriesComponent } from './categories/categories.component';
     ExpensesComponent,
     ExpenseComponent,
     ExpensesPaginatorComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryService } from '../category.service';
+import { ICategory } from 'src/entities/category';
 
 @Component({
   selector: 'app-categories',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
+  categories : ICategory[];
 
-  constructor() { }
+  constructor(private readonly categoryService : CategoryService) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.categories = await this.categoryService.getCategories();
   }
 
 }
