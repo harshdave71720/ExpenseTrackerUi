@@ -16,6 +16,11 @@ export class CategoryService { //implements ICategoryService
   {
     return await this.httpClient.post<ICategory>("https://localhost:5001/category", category).toPromise();
   }
+
+  async deleteCategory(name : string) : Promise<ICategory>
+  {
+    return await this.httpClient.delete<ICategory>("https://localhost:5001/category/" + name).toPromise();
+  }
 }
 
 export interface ICategoryService{

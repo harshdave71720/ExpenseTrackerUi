@@ -32,12 +32,10 @@ export class CategoriesComponent implements OnInit {
 
     await this.categoryService.saveCategory(this.categoryForm.getCategory());
     await this.refreshCategories();
-    console.log(this.categories);
   }
 
   private async refreshCategories()
   {
     this.categories = await this.categoryService.getCategories();
-    console.log(this.categories);
   }
 }
