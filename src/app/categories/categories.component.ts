@@ -9,7 +9,7 @@ import { CategoryForm } from 'src/forms/categoryForm';
   styleUrls: ['./categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
-  categories : ICategory[];
+  categories : ICategory[] = [];
   categoryForm : CategoryForm;
   newCategory : ICategory = new Category('');
 
@@ -23,6 +23,13 @@ export class CategoriesComponent implements OnInit {
 
   async addCategory() : Promise<void> 
   {
+    if(this.categoryForm.form.invalid)
+    {
+      this.categoryForm.form.markAllAsTouched();
+      this.categoryForm.form.updateValueAndValidity();
+      return;
+    }
+
     await this.categoryService.saveCategory(this.categoryForm.getCategory());
   }
 }
