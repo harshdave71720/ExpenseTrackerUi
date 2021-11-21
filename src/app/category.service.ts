@@ -12,9 +12,9 @@ export class CategoryService { //implements ICategoryService
     return await this.httpClient.get<ICategory[]>("https://localhost:5001/category").toPromise();
   }
 
-  async saveCategory(category : Category) : Promise<void>
+  async saveCategory(category : Category) : Promise<ICategory>
   {
-    this.httpClient.post<ICategory>("https://localhost:5001/category", category).toPromise();
+    return await this.httpClient.post<ICategory>("https://localhost:5001/category", category).toPromise();
   }
 }
 
