@@ -11,6 +11,7 @@ import { Expense } from 'src/entities/expense';
 export class ExpenseFormComponent implements OnInit {
   @Input() expense : Expense = new Expense();
   @Input() categories : ICategory[];
+  @Input() editMode : boolean = false;
   form : FormGroup;
 
   constructor() {
