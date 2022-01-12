@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Category, ICategory } from 'src/entities/category';
-import { Expense } from 'src/entities/expense';
+import { Expense, IExpense } from 'src/entities/expense';
 
 @Component({
   selector: 'app-expense-form',
@@ -9,7 +9,7 @@ import { Expense } from 'src/entities/expense';
   styleUrls: ['./expense-form.component.css']
 })
 export class ExpenseFormComponent implements OnInit {
-  @Input() expense : Expense = new Expense();
+  @Input() expense : IExpense = new Expense();
   @Input() categories : ICategory[];
   @Input() editMode : boolean = false;
   form : FormGroup;
