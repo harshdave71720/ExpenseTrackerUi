@@ -1,18 +1,17 @@
 <div class="row">
   <div class="col-md-2">
       <input type="number" class="form-control" [(ngModel)]="expense.amount" [hidden]="!editOn">
-      <h2 [hidden]="editOn">${{ expense.amount }}</h2>
+      <h2 [hidden]="editOn">{{ expense.amount | currency:"INR"}}</h2>
   </div>
    <div class="col-md-2">
       <input [disabled]="!editOn" type="date" class="form-control" [ngModel]="expense.date | date:'yyyy-MM-dd'" (ngModelChange)="expense.date = $event">
   </div>
-  
   <div class="col-md-2">
-      <select name="category" id="" [(ngModel)]="expense.categoryName" class="col-md-2 form-select" [disabled]="!editOn">   
+      <select name="category" id="" [(ngModel)]="expense.categoryName" class="col-md-2 form-select" [disabled]="!editOn">
           <option *ngFor="let category of categories" value="{{ category.name }}" [selected]="category.name === expense.categoryName">{{ category.name }}</option>
         </select>
   </div>
-  
+
   <div class="col-md-3">
       <textarea [(ngModel)]="expense.description" name="" id="" cols="30" rows="1" class="form-control" [disabled]="!editOn"></textarea>
   </div>
