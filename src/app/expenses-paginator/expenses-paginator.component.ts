@@ -62,8 +62,6 @@ export class ExpensesPaginatorComponent implements OnInit {
       this.expenseForm.form.updateValueAndValidity();
       return;
     }
-
-    // console.log(this.expenseForm.getExpense());
     // this.expenseForm.form.reset();
 
     await this.expenseService.addExpense(this.expenseForm.getExpense());

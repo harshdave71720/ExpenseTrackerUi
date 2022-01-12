@@ -1,5 +1,6 @@
 <div class="bg-light">
 <button class="btn btn-primary" (click)="newClicked()">New</button>
+<app-expense-form *ngIf="newExpenseSelected" [categories]="categories"></app-expense-form>
 <div class="row">
   <div class="col-md-2">
     <span class="h4">Amount</span>
@@ -14,7 +15,7 @@
     <span class="h4">description</span>
   </div>
 </div>
-<app-expense-form *ngIf="newExpenseSelected"></app-expense-form>
+
 <ul class="list-group list-group-flush" *ngIf="expenses.length > 0" style="list-style-type: none;">
     <li *ngFor="let expense of expenses">
         <app-expense [expense]="expense" [categories]="categories" (refreshExpensesEvent)="refreshExpenses()"></app-expense>
