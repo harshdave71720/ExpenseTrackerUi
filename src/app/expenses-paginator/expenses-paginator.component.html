@@ -1,7 +1,7 @@
 <div class="bg-light">
 <button class="btn btn-primary" (click)="newClicked()">New</button>
 <app-expense-form *ngIf="newExpenseSelected" [categories]="categories"></app-expense-form>
-<div class="row">
+<div class="row col-md-10">
   <div class="col-md-2">
     <span class="h4">Amount</span>
   </div>
@@ -11,7 +11,7 @@
   <div class="col-md-2">
     <span class="h4">Category</span>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-4">
     <span class="h4">description</span>
   </div>
 </div>

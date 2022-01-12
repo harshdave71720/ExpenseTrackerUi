@@ -26,7 +26,7 @@ export class ExpenseComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async delete() : Promise<void>{ 
+  async delete() : Promise<void>{
     let response = confirm("Are you sure you want to delete the expense?");
     if(!response)
       return;
