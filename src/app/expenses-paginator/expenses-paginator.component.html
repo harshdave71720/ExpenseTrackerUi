@@ -1,27 +1,20 @@
 <div class="bg-light">
 <button class="btn btn-primary" (click)="newClicked()">New</button>
-<div [hidden]="newExpenseSelected" class="form-group row">
-    <div class="col-md-2">
-        <input type="number" class="form-control" [formControl]="expenseForm.amount" required>
-        <span class="text-danger small" *ngIf="!this.expenseForm.amount.untouched && expenseForm.amount.errors?.negativeOrNonZero">{{expenseForm.amount.errors?.negativeOrNonZero.value}}</span>
-    </div>
-    <div class="col-md-2">
-        <input type="date" class="form-control" [formControl]="expenseForm.date">
-    </div>
-    <div class="col-md-2">
-        <select name="category" id="" [formControl]="expenseForm.categoryName" class="col-md-2 form-select">   
-            <option value=""></option>
-            <option *ngFor="let category of categories" value="{{ category.name }}">{{ category.name }}</option>
-        </select>
-    </div>
-    <div class="col-md-3">
-        <textarea [formControl]="expenseForm.description" name="" id="" cols="30" rows="1" class="form-control" placeholder="Description"></textarea>
-    </div>
-    <div class="col-md-1">
-        <button class="btn btn-success" (click)="addExpenseClicked()">Add</button>
-    </div>
-    
+<div class="row">
+  <div class="col-md-2">
+    <span class="h4">Amount</span>
+  </div>
+   <div class="col-md-2">
+    <span class="h4">Date</span>
+  </div>
+  <div class="col-md-2">
+    <span class="h4">Category</span>
+  </div>
+  <div class="col-md-3">
+    <span class="h4">description</span>
+  </div>
 </div>
+<app-expense-form *ngIf="newExpenseSelected"></app-expense-form>
 <ul class="list-group list-group-flush" *ngIf="expenses.length > 0" style="list-style-type: none;">
     <li *ngFor="let expense of expenses">
         <app-expense [expense]="expense" [categories]="categories" (refreshExpensesEvent)="refreshExpenses()"></app-expense>

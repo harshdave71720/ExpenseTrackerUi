@@ -24,7 +24,7 @@ export class ExpensesPaginatorComponent implements OnInit {
   pageSize : number = 5;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private readonly expenseService : ExpenseService, private categoryService : CategoryService) { 
+  constructor(private readonly expenseService : ExpenseService, private categoryService : CategoryService) {
     this.expenseForm = new ExpenseForm(new Expense());
   }
 
@@ -65,7 +65,7 @@ export class ExpensesPaginatorComponent implements OnInit {
 
     // console.log(this.expenseForm.getExpense());
     // this.expenseForm.form.reset();
-    
+
     await this.expenseService.addExpense(this.expenseForm.getExpense());
     await this.refreshExpenses();
     this.newClicked();
