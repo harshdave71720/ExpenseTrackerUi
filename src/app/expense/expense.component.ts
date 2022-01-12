@@ -52,4 +52,16 @@ export class ExpenseComponent implements OnInit {
     this.editOn = false;
   }
 
+  onEdit(exp : IExpense)
+  {
+    this.expense = exp;
+    this.save();
+  }
+
+  onAdd(exp : IExpense)
+  {
+    this.expense = exp;
+    this.addExpense();
+  }
+
 }

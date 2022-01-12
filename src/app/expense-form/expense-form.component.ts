@@ -35,12 +35,18 @@ export class ExpenseFormComponent implements OnInit {
   onAdd() : void {
     if(!this.expenseForm.valid)
       return;
-    this.added.emit(this.expenseForm.value);
+
+    let exp : IExpense = this.expenseForm.value;
+    exp.id = this.expense.id;
+    this.added.emit(exp);
   }
 
   onEdit() : void {
     if(!this.expenseForm.valid)
       return;
-    this.edited.emit(this.expenseForm.value);
+
+    let exp : IExpense = this.expenseForm.value;
+    exp.id = this.expense.id;
+    this.edited.emit(exp);
   }
 }
