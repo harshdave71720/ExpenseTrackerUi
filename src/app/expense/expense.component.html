@@ -11,7 +11,7 @@
       <h2>{{ expense.amount | currency:"INR"}}</h2>
     </div>
     <div class="col-md-2" *ngIf="!editOn">
-        <h2>{{ expense.date | date }}</h2>
+        <h2>{{ expense.date | date:"dd-MM-yyyy" }}</h2>
     </div>
     <div class="col-md-2" *ngIf="!editOn">
         <h2>{{expense.categoryName}}</h2>

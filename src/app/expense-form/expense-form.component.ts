@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Category, ICategory } from 'src/entities/category';
 import { Expense, IExpense } from 'src/entities/expense';
 import { dateInFutureValidator, negativeOrNonZeroValidator } from '../validators/formValidators';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-expense-form',
@@ -27,7 +28,7 @@ export class ExpenseFormComponent implements OnInit {
       {
         amount : new FormControl(this.expense.amount,[negativeOrNonZeroValidator()]),
         // date : new FormControl(this.expense.date, [dateInFutureValidator()]),
-        date : new FormControl(this.expense.date),
+        date : new FormControl(formatDate(this.expense.date, 'yyyy-MM-dd', 'en')),
         categoryName : new FormControl(this.expense.categoryName),
         description : new FormControl(this.expense.description)
       }
