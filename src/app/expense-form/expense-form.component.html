@@ -6,7 +6,7 @@
     </div>
     <div class="col-md-2">
       <input type="date" class="form-control" formControlName="date">
-      <!-- <span class="text-danger small" *ngIf="expenseForm.get('date')?.errors?.dateInFuture">Date in future</span> -->
+      <span class="text-danger small" *ngIf="expenseForm.get('date')?.errors?.dateInFuture">Date in future</span>
     </div>
     <div class="col-md-2">
       <select name="category" id="" class="col-md-2 form-select" formControlName="categoryName">

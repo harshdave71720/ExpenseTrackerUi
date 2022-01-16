@@ -27,8 +27,7 @@ export class ExpenseFormComponent implements OnInit {
     this.expenseForm = new FormGroup(
       {
         amount : new FormControl(this.expense.amount,[negativeOrNonZeroValidator()]),
-        // date : new FormControl(this.expense.date, [dateInFutureValidator()]),
-        date : new FormControl(formatDate(this.expense.date, 'yyyy-MM-dd', 'en')),
+        date : new FormControl(formatDate(this.expense.date, 'yyyy-MM-dd', 'en'), [dateInFutureValidator()]),
         categoryName : new FormControl(this.expense.categoryName),
         description : new FormControl(this.expense.description)
       }
