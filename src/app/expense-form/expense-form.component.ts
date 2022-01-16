@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@
 import { FormControl, FormGroup } from '@angular/forms';
 import { Category, ICategory } from 'src/entities/category';
 import { Expense, IExpense } from 'src/entities/expense';
+import { dateInFutureValidator, negativeOrNonZeroValidator } from '../validators/formValidators';
 
 @Component({
   selector: 'app-expense-form',
@@ -24,7 +25,8 @@ export class ExpenseFormComponent implements OnInit {
   ngOnInit(): void {
     this.expenseForm = new FormGroup(
       {
-        amount : new FormControl(this.expense.amount),
+        amount : new FormControl(this.expense.amount,[negativeOrNonZeroValidator()]),
+        // date : new FormControl(this.expense.date, [dateInFutureValidator()]),
         date : new FormControl(this.expense.date),
         categoryName : new FormControl(this.expense.categoryName),
         description : new FormControl(this.expense.description)
