@@ -12,7 +12,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
   styleUrls: ['./expenses-paginator.component.css']
 })
 export class ExpensesPaginatorComponent implements OnInit {
-  categories : ICategory[] = [];
+  @Input() categories : ICategory[];
   expenses : IExpense[] = [];
   newExpenseSelected : boolean = false;
   totalCount : number = 0;
@@ -23,7 +23,8 @@ export class ExpensesPaginatorComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.categories = await this.categoryService.getCategories();
+    if(!this.categories)
+      this.categories = await this.categoryService.getCategories();
     this.expenses = await this.expenseService.getExpensePaged(this.pageSize, 0).toPromise();
     this.expenseService.getExpenseCount().subscribe(count => this.totalCount = count);
   }

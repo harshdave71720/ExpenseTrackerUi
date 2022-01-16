@@ -10,12 +10,12 @@
         <span class="text-danger small" *ngIf="!this.categoryForm.name.untouched && categoryForm.name.errors?.minlength">Should Be Minimum {{categoryForm.name.errors?.minlength.requiredLength}} Characters</span>
         <ul style="list-style-type: none;" class="col">
             <li *ngFor="let category of categories">
-                <app-category  [category]="category">{{ category.name }}</app-category>
+                <app-category  [category]="category" (deleted)="refreshCategories()">{{ category.name }}</app-category>
             </li>
         </ul>
     </div>
 
     <div class="col-md-10">
-        <app-expenses-paginator></app-expenses-paginator>
+        <app-expenses-paginator [categories]="categories"></app-expenses-paginator>
     </div>
 </div>

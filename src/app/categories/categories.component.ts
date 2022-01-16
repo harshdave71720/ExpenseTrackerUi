@@ -21,7 +21,7 @@ export class CategoriesComponent implements OnInit {
     this.refreshCategories();
   }
 
-  async addCategory() : Promise<void> 
+  async addCategory() : Promise<void>
   {
     if(this.categoryForm.form.invalid)
     {
@@ -34,7 +34,7 @@ export class CategoriesComponent implements OnInit {
     await this.refreshCategories();
   }
 
-  private async refreshCategories()
+  async refreshCategories()
   {
     this.categories = await this.categoryService.getCategories();
   }
