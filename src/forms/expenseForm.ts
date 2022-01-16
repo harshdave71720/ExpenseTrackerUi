@@ -54,14 +54,14 @@ export class ExpenseForm
         return expense;
     }
 
-    
+
 }
 
 function negativeOrNonZeroValidator() : ValidatorFn
 {
-    return (control : AbstractControl) : ValidationErrors | null => 
+    return (control : AbstractControl) : ValidationErrors | null =>
     {
         let notPositive = control.value <= 0;
-        return notPositive ? {negativeOrNonZero : {value : "Should Be Positive"}} : null;
+        return notPositive ? {negativeOrZero : {value : "Should Be Positive"}} : null;
     }
 }

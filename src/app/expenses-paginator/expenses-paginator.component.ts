@@ -3,12 +3,8 @@ import { Expense, IExpense } from 'src/entities/expense';
 import { ExpenseService } from '../expense.service';
 import { Router } from '@angular/router';
 import { ICategory } from 'src/entities/category';
-import { ThrowStmt } from '@angular/compiler';
 import { CategoryService } from '../category.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
-
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ExpenseForm } from 'src/forms/expenseForm';
 
 @Component({
   selector: 'app-expenses-paginator',
@@ -16,20 +12,19 @@ import { ExpenseForm } from 'src/forms/expenseForm';
   styleUrls: ['./expenses-paginator.component.css']
 })
 export class ExpensesPaginatorComponent implements OnInit {
-  categories : ICategory[] = [];
+  @Input() categories : ICategory[];
   expenses : IExpense[] = [];
-  expenseForm : ExpenseForm;
   newExpenseSelected : boolean = false;
   totalCount : number = 0;
   pageSize : number = 5;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private readonly expenseService : ExpenseService, private categoryService : CategoryService) { 
-    this.expenseForm = new ExpenseForm(new Expense());
+  constructor(private readonly expenseService : ExpenseService, private categoryService : CategoryService) {
   }
 
   async ngOnInit(): Promise<void> {
-    this.categories = await this.categoryService.getCategories();
+    if(!this.categories)
+      this.categories = await this.categoryService.getCategories();
     this.expenses = await this.expenseService.getExpensePaged(this.pageSize, 0).toPromise();
     this.expenseService.getExpenseCount().subscribe(count => this.totalCount = count);
   }
@@ -49,26 +44,9 @@ export class ExpensesPaginatorComponent implements OnInit {
     e.subscribe(expenses => this.expenses = expenses);
   }
 
-  newClicked() : void
+  async onAdd(exp : IExpense) : Promise<void>
   {
-    this.newExpenseSelected = !this.newExpenseSelected;
-  }
-
-  async addExpenseClicked() : Promise<void>
-  {
-    if(this.expenseForm.IsInvalid)
-    {
-      this.expenseForm.form.markAllAsTouched();
-      this.expenseForm.form.updateValueAndValidity();
-      return;
-    }
-
-    // console.log(this.expenseForm.getExpense());
-    // this.expenseForm.form.reset();
-    
-    await this.expenseService.addExpense(this.expenseForm.getExpense());
+    await this.expenseService.addExpense(exp);
     await this.refreshExpenses();
-    this.newClicked();
-    this.expenseForm.refresh();
   }
 }
