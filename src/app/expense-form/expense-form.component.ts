@@ -26,10 +26,10 @@ export class ExpenseFormComponent implements OnInit {
   ngOnInit(): void {
     this.expenseForm = new FormGroup(
       {
-        amount : new FormControl(this.expense.amount,[negativeOrNonZeroValidator()]),
-        date : new FormControl(formatDate(this.expense.date, 'yyyy-MM-dd', 'en'), [dateInFutureValidator()]),
-        categoryName : new FormControl(this.expense.categoryName),
-        description : new FormControl(this.expense.description)
+        amount : new FormControl(this.expense?.amount,[negativeOrNonZeroValidator()]),
+        date : new FormControl(formatDate(this.expense?.date, 'yyyy-MM-dd', 'en'), [dateInFutureValidator()]),
+        categoryName : new FormControl(this.expense?.categoryName),
+        description : new FormControl(this.expense?.description)
       }
     );
   }
@@ -38,8 +38,7 @@ export class ExpenseFormComponent implements OnInit {
     if(!this.expenseForm.valid)
       return;
 
-    let exp : IExpense = this.expenseForm.value;
-    exp.id = this.expense.id;
+    let exp : IExpense = this.getExpenseFromForm();
     this.added.emit(exp);
   }
 
@@ -47,8 +46,15 @@ export class ExpenseFormComponent implements OnInit {
     if(!this.expenseForm.valid)
       return;
 
-    let exp : IExpense = this.expenseForm.value;
-    exp.id = this.expense.id;
+    let exp = this.getExpenseFromForm();
     this.edited.emit(exp);
+  }
+
+  private getExpenseFromForm() : IExpense
+  {
+    let expense : IExpense = this.expenseForm.value;
+    expense.id = this.expense?.id;
+    expense.categoryName = expense.categoryName === "null" ? null : expense.categoryName;
+    return expense;
   }
 }
