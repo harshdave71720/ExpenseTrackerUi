@@ -16,6 +16,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 import { ExpenseFormComponent } from './expense-form/expense-form.component';
+import { CategoryService } from './category.service';
+import { ExpenseService } from './expense.service';
+import { SecurityService } from './services/security.service';
+import { LoginComponent } from './shared/login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +29,8 @@ import { ExpenseFormComponent } from './expense-form/expense-form.component';
     ExpensesPaginatorComponent,
     CategoriesComponent,
     CategoryComponent,
-    ExpenseFormComponent
+    ExpenseFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import { ExpenseFormComponent } from './expense-form/expense-form.component';
     ReactiveFormsModule
   ],
   //providers: [{provide: "ICategoryService", useClass: CategoryService}],
+  providers : [CategoryService, ExpenseService, SecurityService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
