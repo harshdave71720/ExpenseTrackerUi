@@ -20,6 +20,7 @@ import { CategoryService } from './category.service';
 import { ExpenseService } from './expense.service';
 import { SecurityService } from './services/security.service';
 import { LoginComponent } from './shared/login/login.component';
+import { AuthenticationGuard } from './shared/guards/authenticationGuard';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { LoginComponent } from './shared/login/login.component';
     ReactiveFormsModule
   ],
   //providers: [{provide: "ICategoryService", useClass: CategoryService}],
-  providers : [CategoryService, ExpenseService, SecurityService],
+  providers : [CategoryService, ExpenseService, SecurityService, AuthenticationGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
