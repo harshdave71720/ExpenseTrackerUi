@@ -1,12 +1,15 @@
 <nav class="navbar navbar-expand-lg bg-secondary">
     <a class="navbar-brand text-light" href="#">Expense Tacker</a>
 
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup" >
         <div class="navbar-nav">
-          <a class="nav-item nav-link active text-light" routerLink="/expenses">Expenses</a>
-          <a class="nav-item nav-link text-light" href="#">Categories</a>
-          <a class="nav-item nav-link text-light" [routerLink]="['login']">Login</a>
-          <a class="nav-item nav-link text-light" href="#">Logout</a>
+          <a class="nav-item nav-link active text-light" [routerLink]="['expenses', 'paged']">Expenses</a>
+          <a class="nav-item nav-link text-light" [routerLink]="['categories']">Categories</a>
+        </div>
+        <div class="navbar-nav ms-auto">
+          <a class="nav-item nav-link text-white bg-dark" *ngIf="securityService.isUserLoggedIn">{{ securityService?.user?.firstname }}</a>
+          <a class="nav-item nav-link text-white bg-dark" [routerLink]="['login']" *ngIf="!securityService.isUserLoggedIn">Login</a>
+          <a class="nav-item nav-link text-white bg-dark" *ngIf="securityService.isUserLoggedIn" (click)="logout()">Logout</a>
         </div>
     </div>
 </nav>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SecurityService } from './services/security.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ExpenseTrackerUi';
+
+  constructor(public securityService : SecurityService) {}
+
+  logout() : void {
+    this.securityService.logout();
+  }
 }
