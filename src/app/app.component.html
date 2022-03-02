@@ -7,9 +7,9 @@
           <a class="nav-item nav-link text-light" [routerLink]="['categories']">Categories</a>
         </div>
         <div class="navbar-nav ms-auto">
-          <a class="nav-item nav-link text-white bg-dark" *ngIf="securityService.isUserLoggedIn">{{ securityService?.user?.firstname }}</a>
-          <a class="nav-item nav-link text-white bg-dark" [routerLink]="['login']" *ngIf="!securityService.isUserLoggedIn">Login</a>
-          <a class="nav-item nav-link text-white bg-dark" *ngIf="securityService.isUserLoggedIn" (click)="logout()">Logout</a>
+          <a class="nav-item nav-link text-white bg-dark" *ngIf="user">{{ user?.firstname }}</a>
+          <a class="nav-item nav-link text-white bg-dark" [routerLink]="['login']" *ngIf="!user">Login</a>
+          <a class="nav-item nav-link text-white bg-dark" *ngIf="user" (click)="logout()">Logout</a>
         </div>
     </div>
 </nav>
