@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   loginForm : FormGroup;
   registerForm : FormGroup;
 
-  constructor(private securityService : SecurityService,private router : Router, private activatedRoute : ActivatedRoute) {
+  constructor(private securityService : SecurityService, private activatedRoute : ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -35,19 +35,7 @@ export class LoginComponent implements OnInit {
       return;
 
     let values = this.loginForm.value;
-    console.log(this.loginForm.value);
-    this.securityService.login(values.email, values.password).subscribe(u => {
-      if(u)
-      {
-        let returnUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl');
-        if(returnUrl)
-          this.router.navigate([returnUrl]);
-        else
-          this.router.navigate(['']);
-      }
-
-
-    });
+    this.securityService.login(values.email, values.password, this.activatedRoute.snapshot.queryParamMap.get('returnUrl'));
   }
 
   RegisterClicked() : void {
@@ -56,15 +44,6 @@ export class LoginComponent implements OnInit {
 
     let values = this.registerForm.value;
     console.log(values);
-    this.securityService.register(this.registerForm.value).subscribe(u => {
-      if(u)
-      {
-        let returnUrl = this.activatedRoute.snapshot.queryParamMap.get('returnUrl');
-        if(returnUrl)
-          this.router.navigate([returnUrl]);
-        else
-          this.router.navigate(['']);
-      }
-    });
+    this.securityService.register(this.registerForm.value, this.activatedRoute.snapshot.queryParamMap.get('returnUrl'));
   }
 }
