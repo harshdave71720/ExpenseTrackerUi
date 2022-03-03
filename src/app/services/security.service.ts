@@ -34,6 +34,7 @@ export class SecurityService {
 
   logout() {
     localStorage.removeItem(this.jwt_key);
+    this.router.navigate(['login']);
   }
 
   register(user : UserRegister, returnUrl : string) {
