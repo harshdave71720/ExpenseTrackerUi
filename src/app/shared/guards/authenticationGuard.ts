@@ -9,9 +9,9 @@ export class AuthenticationGuard implements CanActivate {
   constructor(private readonly securityService : SecurityService, private readonly router : Router){}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    if(this.securityService.isUserLoggedIn)
-      return true;
-    this.router.navigate(['login'], { queryParams : { returnUrl : state.url } });
+    // if(this.securityService.isUserLoggedIn)
+    //   return true;
+    // this.router.navigate(['login'], { queryParams : { returnUrl : state.url } });
     return false;
   }
 
