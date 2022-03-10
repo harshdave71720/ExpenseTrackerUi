@@ -1,7 +1,7 @@
 <h2>Expenses</h2>
 <button class="btn btn-primary" (click)="newClicked()">New</button>
 <button class="btn btn-primary" (click)="addCategory()">Add Demo Category</button>
-<ul class="list-group list-group-flush" *ngIf="expenses.length > 0" style="list-style-type: none;">
+<ul class="list-group list-group-flush" *ngIf="expenses?.length > 0" style="list-style-type: none;">
     <app-expense [newExpense]="newSelected" [hidden]="!newSelected" [categories]="categories" (refreshExpensesEvent)="refreshExpenses()">
     </app-expense>
     <li *ngFor="let expense of expenses">
