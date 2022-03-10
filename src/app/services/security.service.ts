@@ -6,7 +6,6 @@ import { UserRegister } from "src/entities/userRegister";
 import jwt_decode from 'jwt-decode';
 import { map } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { IResponse } from "src/entities/Response";
 
 @Injectable()
 export class SecurityService {
