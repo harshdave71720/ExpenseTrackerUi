@@ -46,12 +46,12 @@ export class SecurityService {
   }
 
   private GetTokenAndUserInfo(credentials : object) : Observable<ApplicationUser | undefined> {
-    return this.httpClient.post<TokenResponse>(`${this.baseUrl}/user/token`, credentials)
+    return this.httpClient.post<IResponse<TokenResponse>>(`${this.baseUrl}/user/token`, credentials)
       .pipe(
         map(t => {
-          if(!t.token)
+          if(!t.data.token)
             return undefined;
-          return this.decodeToken(t.token);
+          return this.decodeToken(t.data.token);
         })
       );
   }

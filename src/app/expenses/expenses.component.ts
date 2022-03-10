@@ -21,14 +21,14 @@ export class ExpensesComponent implements OnInit {
   newSelected : boolean = false;
 
   constructor(private client : HttpClient,
-                private categoryService : CategoryService, 
+                private categoryService : CategoryService,
                 private readonly expenseSerivice : ExpenseService) { }
 
-  async ngOnInit(): Promise<void> {
-    this.expenses = await this.expenseSerivice.get();
-    this.categories = await this.categoryService.getCategories();
+   ngOnInit(): void {
+    this.expenseSerivice.get().subscribe(e => { console.log("Data Reeturned"); this.expenses = e; });
+    // this.categories = await this.categoryService.getCategories();
   }
-  
+
   newClicked() : void {
     this.newSelected = this.newSelected ? false : true;
   }

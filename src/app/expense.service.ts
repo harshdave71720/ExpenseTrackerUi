@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Expense, IExpense } from 'src/entities/expense';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators'
+import { EMPTY, Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators'
+import { IResponse } from 'src/entities/Response';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,14 @@ export class ExpenseService {
     await this.httpClient.delete("https://localhost:5001/Expense/" + expenseId).toPromise();
   }
 
-  public async get() : Promise<IExpense[]>
+  public get() : Observable<IExpense[]>
   {
-    return await this.httpClient.get<IExpense[]>("https://localhost:5001/Expense").toPromise();
+    console.log("Calling API");
+    return  this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense", { observe : 'response' })
+      .pipe(
+        // tap(r => console.log(r)),
+        map(r => r.body.data),
+        catchError(this.handleError));
   }
 
   public async updateExpense(expense : IExpense) : Promise<IExpense>
@@ -38,23 +44,27 @@ export class ExpenseService {
   public getExpensePaged(limit : number, offset : number) : Observable<IExpense[]>
   {
     var params = new HttpParams( { fromString : `limit=${limit}&offset=${offset}&latestFirst=${true}`} );
-    return this.httpClient.get<IExpense[]>("https://localhost:5001/Expense/GetPaged", { params : params })
-            //.pipe(catchError(this.handleError));
-  } 
+    return this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense/GetPaged", { params : params })
+      .pipe(
+        map(r => r.data),
+        catchError(this.handleError)
+      );
+  }
 
-  
+
   handleError(error : HttpErrorResponse)
   {
+    console.log("Handle Error Called");
     if(error.status === 0)
     {
-      console.error("Cleint Side Error :", error.error);
+      console.log("Cleint Side Error :", error.error.Errors);
     }
     else
     {
-      console.error("Backend error : ", error.error);
+      console.log("Backend error : ", error.error.Errors);
     }
 
-    return throwError("An error occurred");
+    return EMPTY;
   }
 }
 
