@@ -19,26 +19,37 @@ export class ExpenseService {
 
   public async delete(expenseId : number)
   {
-    await this.httpClient.delete("https://localhost:5001/Expense/" + expenseId).toPromise();
+    await this.httpClient.delete<IResponse<IExpense>>("https://localhost:5001/Expense/" + expenseId)
+      .pipe(catchError(this.handleError))
+      .toPromise();
   }
 
   public get() : Observable<IExpense[]>
   {
     console.log("Calling API");
-    return  this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense", { observe : 'response' })
+    return  this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense")
       .pipe(
-        // tap(r => console.log(r)),
-        map(r => r.body.data),
-        catchError(this.handleError));
+        map(r => r.data),
+        catchError(this.handleError)
+      );
   }
 
   public async updateExpense(expense : IExpense) : Promise<IExpense>
   {
-    return await this.httpClient.put<IExpense>("https://localhost:5001/Expense", expense).toPromise();
+    return await this.httpClient.put<IResponse<IExpense>>("https://localhost:5001/Expense", expense)
+    .pipe(
+      map(r => r.data),
+      catchError(this.handleError)
+    )
+    .toPromise();
   }
 
   public getExpenseCount() : Observable<number>{
-    return this.httpClient.get<number>("https://localhost:5001/Expense/count");
+    return this.httpClient.get<IResponse<number>>("https://localhost:5001/Expense/count")
+    .pipe(
+      map(r => r.data),
+      catchError(this.handleError)
+    );
   }
 
   public getExpensePaged(limit : number, offset : number) : Observable<IExpense[]>
@@ -54,16 +65,18 @@ export class ExpenseService {
 
   handleError(error : HttpErrorResponse)
   {
-    console.log("Handle Error Called");
-    if(error.status === 0)
+    let response = error.error as IResponse<any>;
+    if(response?.errors?.length == 1)
     {
-      console.log("Cleint Side Error :", error.error.Errors);
+      if(error.status === 0)
+      {
+        console.log("Cleint Side Error :", response.errors);
+      }
+      else
+      {
+        console.log("Backend error : ", response.errors);
+      }
     }
-    else
-    {
-      console.log("Backend error : ", error.error.Errors);
-    }
-
     return EMPTY;
   }
 }

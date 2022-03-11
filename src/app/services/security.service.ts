@@ -1,11 +1,12 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { EMPTY, Observable, of } from "rxjs";
 import { ApplicationUser } from "src/entities/applicationUser";
 import { UserRegister } from "src/entities/userRegister";
 import jwt_decode from 'jwt-decode';
-import { map } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { IResponse } from "src/entities/Response";
 
 @Injectable()
 export class SecurityService {
@@ -41,7 +42,8 @@ export class SecurityService {
     if(this.user)
       throw Error(`User ${this.user.firstname} is already logged in. Please logout first`);
 
-    this.httpClient.post(`${this.baseUrl}/user/register`, user)
+    this.httpClient.post<IResponse<any>>(`${this.baseUrl}/user/register`, user)
+    .pipe(catchError(this.handleError))
     .subscribe(() => this.login(user.email, user.password, returnUrl));
   }
 
@@ -52,7 +54,8 @@ export class SecurityService {
           if(!t.data.token)
             return undefined;
           return this.decodeToken(t.data.token);
-        })
+        }),
+        catchError(this.handleError)
       );
   }
 
@@ -79,7 +82,25 @@ export class SecurityService {
         this.router.navigate(['']);
   }
 
+  handleError(error : HttpErrorResponse)
+  {
+    let response = error.error as IResponse<any>;
+    if(response?.errors?.length == 1)
+    {
+      if(error.status === 0)
+      {
+        console.log("Cleint Side Error :", response.errors);
+      }
+      else
+      {
+        console.log("Backend error : ", response.errors);
+      }
+    }
+    return EMPTY;
+  }
+
 }
+
 
 class TokenResponse {
   token : string;
