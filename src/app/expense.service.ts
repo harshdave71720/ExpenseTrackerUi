@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Expense, IExpense } from 'src/entities/expense';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { EMPTY, Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators'
+import { IExpense } from 'src/entities/expense';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators'
 import { IResponse } from 'src/entities/Response';
+import { ErrorService } from './services/error.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpenseService {
 
-  constructor(private readonly httpClient : HttpClient) { }
+  constructor(private readonly httpClient : HttpClient, private readonly errorService : ErrorService) { }
 
   public async addExpense(expense : IExpense) : Promise<IExpense> {
     // console.log(expense);
@@ -20,7 +21,7 @@ export class ExpenseService {
   public async delete(expenseId : number)
   {
     await this.httpClient.delete<IResponse<IExpense>>("https://localhost:5001/Expense/" + expenseId)
-      .pipe(catchError(this.handleError))
+      .pipe(catchError(this.errorService.handleError))
       .toPromise();
   }
 
@@ -30,7 +31,7 @@ export class ExpenseService {
     return  this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense")
       .pipe(
         map(r => r.data),
-        catchError(this.handleError)
+        catchError(this.errorService.handleError)
       );
   }
 
@@ -39,7 +40,7 @@ export class ExpenseService {
     return await this.httpClient.put<IResponse<IExpense>>("https://localhost:5001/Expense", expense)
     .pipe(
       map(r => r.data),
-      catchError(this.handleError)
+      catchError(this.errorService.handleError)
     )
     .toPromise();
   }
@@ -48,7 +49,7 @@ export class ExpenseService {
     return this.httpClient.get<IResponse<number>>("https://localhost:5001/Expense/count")
     .pipe(
       map(r => r.data),
-      catchError(this.handleError)
+      catchError(this.errorService.handleError)
     );
   }
 
@@ -58,26 +59,8 @@ export class ExpenseService {
     return this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense/GetPaged", { params : params })
       .pipe(
         map(r => r.data),
-        catchError(this.handleError)
+        catchError(this.errorService.handleError)
       );
-  }
-
-
-  handleError(error : HttpErrorResponse)
-  {
-    let response = error.error as IResponse<any>;
-    if(response?.errors?.length == 1)
-    {
-      if(error.status === 0)
-      {
-        console.log("Cleint Side Error :", response.errors);
-      }
-      else
-      {
-        console.log("Backend error : ", response.errors);
-      }
-    }
-    return EMPTY;
   }
 }
 

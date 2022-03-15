@@ -22,6 +22,7 @@ import { SecurityService } from './services/security.service';
 import { LoginComponent } from './shared/login/login.component';
 import { AuthenticationGuard } from './shared/guards/authenticationGuard';
 import { AccessHeaderInterceptor } from './shared/interceptors/accessHeaderInterceptor';
+import { ErrorService } from './services/error.service';
 
 @NgModule({
   declarations: [
@@ -45,12 +46,14 @@ import { AccessHeaderInterceptor } from './shared/interceptors/accessHeaderInter
     ReactiveFormsModule
   ],
   //providers: [{provide: "ICategoryService", useClass: CategoryService}],
-  providers : [CategoryService, ExpenseService, SecurityService, AuthenticationGuard,
+  providers : [ CategoryService, ExpenseService, SecurityService, AuthenticationGuard,
                 {
                   provide : HTTP_INTERCEPTORS,
                   useClass : AccessHeaderInterceptor,
                   multi : true
-                }],
+                },
+                ErrorService
+              ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

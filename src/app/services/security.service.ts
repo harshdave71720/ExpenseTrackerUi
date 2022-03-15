@@ -1,12 +1,13 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { EMPTY, Observable, of } from "rxjs";
+import { Observable, of } from "rxjs";
 import { ApplicationUser } from "src/entities/applicationUser";
 import { UserRegister } from "src/entities/userRegister";
 import jwt_decode from 'jwt-decode';
 import { catchError, map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { IResponse } from "src/entities/Response";
+import { ErrorService } from "./error.service";
 
 @Injectable()
 export class SecurityService {
@@ -14,7 +15,8 @@ export class SecurityService {
   user : ApplicationUser;
   baseUrl : string = "https://localhost:5001";
 
-  constructor(private readonly httpClient : HttpClient, private readonly router : Router){}
+  constructor(private readonly httpClient : HttpClient, private readonly router : Router
+              , private readonly errorService : ErrorService){}
 
   login(email : string, password : string, returnUrl : string) {
     let token = localStorage.getItem(this.jwt_key);
@@ -43,7 +45,7 @@ export class SecurityService {
       throw Error(`User ${this.user.firstname} is already logged in. Please logout first`);
 
     this.httpClient.post<IResponse<any>>(`${this.baseUrl}/user/register`, user)
-    .pipe(catchError(this.handleError))
+    .pipe(catchError(this.errorService.handleError))
     .subscribe(() => this.login(user.email, user.password, returnUrl));
   }
 
@@ -55,7 +57,7 @@ export class SecurityService {
             return undefined;
           return this.decodeToken(t.data.token);
         }),
-        catchError(this.handleError)
+        catchError(this.errorService.handleError)
       );
   }
 
@@ -82,25 +84,7 @@ export class SecurityService {
         this.router.navigate(['']);
   }
 
-  handleError(error : HttpErrorResponse)
-  {
-    let response = error.error as IResponse<any>;
-    if(response?.errors?.length == 1)
-    {
-      if(error.status === 0)
-      {
-        console.log("Cleint Side Error :", response.errors);
-      }
-      else
-      {
-        console.log("Backend error : ", response.errors);
-      }
-    }
-    return EMPTY;
-  }
-
 }
-
 
 class TokenResponse {
   token : string;
