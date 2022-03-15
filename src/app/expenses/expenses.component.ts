@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgModel } from '@angular/forms';
 import { ICategory } from 'src/entities/category';
-import { CategoryService, ICategoryService } from '../category.service';
+import { CategoryService } from '../category.service';
 import { ExpenseService } from '../expense.service';
 
 

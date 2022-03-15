@@ -1,44 +1,64 @@
 import { Injectable } from '@angular/core';
-import { Expense, IExpense } from 'src/entities/expense';
+import { IExpense } from 'src/entities/expense';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { EMPTY, Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators'
+import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators'
 import { IResponse } from 'src/entities/Response';
+import { ErrorService } from './services/error.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpenseService {
 
-  constructor(private readonly httpClient : HttpClient) { }
+  constructor(private readonly httpClient : HttpClient, private readonly errorService : ErrorService,
+              private readonly toastr : ToastrService) { }
 
   public async addExpense(expense : IExpense) : Promise<IExpense> {
     // console.log(expense);
-    return await this.httpClient.post<IExpense>("https://localhost:5001/expense", expense).toPromise();
+    return await this.httpClient.post<IExpense>("https://localhost:5001/expense", expense)
+    .pipe(
+      catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
+    )
+    .toPromise();
   }
 
   public async delete(expenseId : number)
   {
-    await this.httpClient.delete("https://localhost:5001/Expense/" + expenseId).toPromise();
+    await this.httpClient.delete<IResponse<IExpense>>("https://localhost:5001/Expense/" + expenseId)
+      .pipe(
+        catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
+      )
+      .toPromise();
   }
 
   public get() : Observable<IExpense[]>
   {
     console.log("Calling API");
-    return  this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense", { observe : 'response' })
+    return  this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense")
       .pipe(
-        // tap(r => console.log(r)),
-        map(r => r.body.data),
-        catchError(this.handleError));
+        map(r => r.data),
+        catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
+      );
   }
 
   public async updateExpense(expense : IExpense) : Promise<IExpense>
   {
-    return await this.httpClient.put<IExpense>("https://localhost:5001/Expense", expense).toPromise();
+    return await this.httpClient.put<IResponse<IExpense>>("https://localhost:5001/Expense", expense)
+    .pipe(
+      map(r => r.data),
+      catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
+    )
+    .toPromise();
   }
 
   public getExpenseCount() : Observable<number>{
-    return this.httpClient.get<number>("https://localhost:5001/Expense/count");
+    return this.httpClient.get<IResponse<number>>("https://localhost:5001/Expense/count")
+    .pipe(
+      map(r => r.data),
+      catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
+    );
   }
 
   public getExpensePaged(limit : number, offset : number) : Observable<IExpense[]>
@@ -47,24 +67,8 @@ export class ExpenseService {
     return this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense/GetPaged", { params : params })
       .pipe(
         map(r => r.data),
-        catchError(this.handleError)
+        catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
       );
-  }
-
-
-  handleError(error : HttpErrorResponse)
-  {
-    console.log("Handle Error Called");
-    if(error.status === 0)
-    {
-      console.log("Cleint Side Error :", error.error.Errors);
-    }
-    else
-    {
-      console.log("Backend error : ", error.error.Errors);
-    }
-
-    return EMPTY;
   }
 }
 
