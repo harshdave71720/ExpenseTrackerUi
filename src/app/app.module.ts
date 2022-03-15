@@ -23,6 +23,7 @@ import { LoginComponent } from './shared/login/login.component';
 import { AuthenticationGuard } from './shared/guards/authenticationGuard';
 import { AccessHeaderInterceptor } from './shared/interceptors/accessHeaderInterceptor';
 import { ErrorService } from './services/error.service';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ErrorService } from './services/error.service';
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot()
   ],
   //providers: [{provide: "ICategoryService", useClass: CategoryService}],
   providers : [ CategoryService, ExpenseService, SecurityService, AuthenticationGuard,

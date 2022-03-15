@@ -1,28 +1,26 @@
 import { HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
 import { EMPTY } from "rxjs";
 import { IResponse } from "src/entities/Response";
 
 @Injectable()
 export class ErrorService {
-  handleError(errorResponse : HttpErrorResponse)
+  constructor(private readonly toastr : ToastrService){}
+
+  handleError(errorResponse : HttpErrorResponse, toastr : ToastrService = null)
   {
-    if(errorResponse.status === 0)
-    {
-      console.log("Cleint Side Error :", errorResponse.error);
-      return EMPTY;
-    }
     let response = errorResponse.error as IResponse<any>;
-    if(response?.errors)
+    if(errorResponse.status != 0 && response?.errors)
     {
       for(let errorMessage of response.errors)
       {
-        console.log("Error Message : " + errorMessage);
+        this.toastr.error(errorMessage);
       }
     }
     else
     {
-      console.log("Unknown Error Occurred");
+      this.toastr.error("Unknown Error Occurred");
     }
     return EMPTY;
   }

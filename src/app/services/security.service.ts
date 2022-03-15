@@ -8,6 +8,7 @@ import { catchError, map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { IResponse } from "src/entities/Response";
 import { ErrorService } from "./error.service";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable()
 export class SecurityService {
@@ -16,7 +17,8 @@ export class SecurityService {
   baseUrl : string = "https://localhost:5001";
 
   constructor(private readonly httpClient : HttpClient, private readonly router : Router
-              , private readonly errorService : ErrorService){}
+              , private readonly errorService : ErrorService
+              , private readonly toastr : ToastrService){}
 
   login(email : string, password : string, returnUrl : string) {
     let token = localStorage.getItem(this.jwt_key);
@@ -31,6 +33,7 @@ export class SecurityService {
       .subscribe(user => {
         this.user = user;
         localStorage.setItem(this.jwt_key, user.bearerToken);
+        this.toastr.success("Logged in successfully");
         this.redirect(returnUrl);
       });
   }
@@ -43,9 +46,10 @@ export class SecurityService {
   register(user : UserRegister, returnUrl : string) {
     if(this.user)
       throw Error(`User ${this.user.firstname} is already logged in. Please logout first`);
-
     this.httpClient.post<IResponse<any>>(`${this.baseUrl}/user/register`, user)
-    .pipe(catchError(this.errorService.handleError))
+    .pipe(
+      catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
+    )
     .subscribe(() => this.login(user.email, user.password, returnUrl));
   }
 
@@ -57,7 +61,7 @@ export class SecurityService {
             return undefined;
           return this.decodeToken(t.data.token);
         }),
-        catchError(this.errorService.handleError)
+        catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
       );
   }
 
