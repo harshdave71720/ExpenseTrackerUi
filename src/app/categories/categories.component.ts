@@ -5,8 +5,7 @@ import { CategoryForm } from 'src/forms/categoryForm';
 
 @Component({
   selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css']
+  templateUrl: './categories.component.html'
 })
 export class CategoriesComponent implements OnInit {
   categories : ICategory[] = [];

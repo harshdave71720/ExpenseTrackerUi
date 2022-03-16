@@ -1,11 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICategory } from 'src/entities/category';
-import { CategoryService } from '../category.service';
+import { CategoryService } from '../../category.service';
 
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  templateUrl: './category.component.html'
 })
 export class CategoryComponent implements OnInit {
   @Input() category : ICategory;
