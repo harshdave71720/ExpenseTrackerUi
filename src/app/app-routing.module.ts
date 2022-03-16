@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { CategoriesComponent } from './categories/categories.component';
-import { LoginComponent } from './shared/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { AuthenticationGuard } from './shared/guards/authenticationGuard';
 
 const routes : Routes = [

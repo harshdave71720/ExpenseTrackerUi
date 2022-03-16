@@ -15,7 +15,7 @@ import { ExpenseFormComponent } from './expenses/expense-form/expense-form.compo
 import { CategoryService } from './services/category.service';
 import { ExpenseService } from './services/expense.service';
 import { SecurityService } from './services/security.service';
-import { LoginComponent } from './shared/login/login.component';
+import { LoginComponent } from './login/login.component';
 import { AuthenticationGuard } from './shared/guards/authenticationGuard';
 import { AccessHeaderInterceptor } from './shared/interceptors/accessHeaderInterceptor';
 import { ErrorService } from './services/error.service';
