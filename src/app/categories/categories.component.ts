@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../category.service';
+import { CategoryService } from '../services/category.service';
 import { ICategory, Category } from 'src/entities/category';
-import { CategoryForm } from 'src/forms/categoryForm';
+import { CategoryForm } from 'src/app/categories/category/categoryForm';
 
 @Component({
   selector: 'app-categories',
-  templateUrl: './categories.component.html',
-  styleUrls: ['./categories.component.css']
+  templateUrl: './categories.component.html'
 })
 export class CategoriesComponent implements OnInit {
   categories : ICategory[] = [];

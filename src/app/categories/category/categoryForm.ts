@@ -15,7 +15,7 @@ export class CategoryForm
         });
     }
 
-    getCategory() : ICategory 
+    getCategory() : ICategory
     {
         return new Category(this.name.value);
     }
@@ -27,7 +27,7 @@ function AllWhiteSpaceValidator() : ValidatorFn
     {
         let value = control.value as string;
         if(value == null || value.trim().length == 0)
-            return {AllWhiteSpace : {value : "Should Not Be Empty"}}; 
+            return {AllWhiteSpace : {value : "Should Not Be Empty"}};
         return null;
     }
 }

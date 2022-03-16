@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Expense, IExpense } from 'src/entities/expense';
-// import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Input } from '@angular/core';
 import { ICategory } from 'src/entities/category';
-import { CategoryService } from '../category.service';
-import { ExpenseService } from '../expense.service';
+import { CategoryService } from '../../services/category.service';
+import { ExpenseService } from '../../services/expense.service';
 import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-expense',
-  templateUrl: './expense.component.html',
-  styleUrls: ['./expense.component.css']
+  templateUrl: './expense.component.html'
 })
 export class ExpenseComponent implements OnInit {
   @Input() expense : IExpense = new Expense();

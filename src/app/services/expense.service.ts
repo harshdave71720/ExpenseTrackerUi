@@ -4,7 +4,7 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators'
 import { IResponse } from 'src/entities/Response';
-import { ErrorService } from './services/error.service';
+import { ErrorService } from './error.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({

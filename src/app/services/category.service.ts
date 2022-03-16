@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Category, ICategory } from 'src/entities/category';
-import { IResponse } from '../entities/Response';
+import { IResponse } from '../../entities/Response';
 import { catchError, map } from 'rxjs/operators';
-import { ErrorService } from './services/error.service';
+import { ErrorService } from './error.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Injectable({

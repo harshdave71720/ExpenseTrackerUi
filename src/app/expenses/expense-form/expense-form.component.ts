@@ -1,14 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Category, ICategory } from 'src/entities/category';
+import { ICategory } from 'src/entities/category';
 import { Expense, IExpense } from 'src/entities/expense';
-import { dateInFutureValidator, negativeOrNonZeroValidator } from '../validators/formValidators';
+import { dateInFutureValidator, negativeOrNonZeroValidator } from '../../validators/formValidators';
 import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-expense-form',
-  templateUrl: './expense-form.component.html',
-  styleUrls: ['./expense-form.component.css']
+  templateUrl: './expense-form.component.html'
 })
 export class ExpenseFormComponent implements OnInit {
   @Input() expense : IExpense = new Expense();
