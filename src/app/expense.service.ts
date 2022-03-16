@@ -70,5 +70,15 @@ export class ExpenseService {
         catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
       );
   }
+
+  uploadExpenses(file : File) {
+    let formData = new FormData();
+    formData.append("file", file, file.name);
+    this.httpClient.post<IResponse<any>>("https://localhost:5001/Expense/Upload", formData)
+    .pipe(
+      catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
+    )
+    .subscribe();
+  }
 }
 

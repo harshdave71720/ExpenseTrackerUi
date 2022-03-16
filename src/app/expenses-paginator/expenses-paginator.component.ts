@@ -17,6 +17,7 @@ export class ExpensesPaginatorComponent implements OnInit {
   newExpenseSelected : boolean = false;
   totalCount : number = 0;
   pageSize : number = 5;
+  fileToUpload : File = undefined;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   constructor(private readonly expenseService : ExpenseService, private categoryService : CategoryService) {
@@ -48,5 +49,19 @@ export class ExpensesPaginatorComponent implements OnInit {
   {
     await this.expenseService.addExpense(exp);
     await this.refreshExpenses();
+  }
+
+  uploadClicked() : void {
+    if(!this.fileToUpload)
+      return;
+    this.expenseService.uploadExpenses(this.fileToUpload);
+  }
+
+  fileChanged(event : Event) : void {
+    var element = event.target as HTMLInputElement;
+    if(element.files && element.files.length > 0)
+    {
+      this.fileToUpload = element.files[0];
+    }
   }
 }
