@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable, of } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { ApplicationUser } from "src/entities/applicationUser";
 import { UserRegister } from "src/entities/userRegister";
 import jwt_decode from 'jwt-decode';
@@ -15,6 +15,7 @@ export class SecurityService {
   jwt_key : string = "JWT_TOKEN";
   user : ApplicationUser;
   baseUrl : string = "https://localhost:5001";
+  user$ = new Subject<ApplicationUser>();
 
   constructor(private readonly httpClient : HttpClient, private readonly router : Router
               , private readonly errorService : ErrorService
@@ -25,6 +26,7 @@ export class SecurityService {
     if(token)
     {
       let user = this.decodeToken(token);
+      this.user$.next(user);
       if(user)
         throw Error(`User ${user.firstname} Is Already Logged In, Please Log Out First`);
     }
@@ -32,6 +34,7 @@ export class SecurityService {
     this.GetTokenAndUserInfo({ email : email, password : password })
       .subscribe(user => {
         this.user = user;
+        this.user$.next(user);
         localStorage.setItem(this.jwt_key, user.bearerToken);
         this.toastr.success("Logged in successfully");
         this.redirect(returnUrl);

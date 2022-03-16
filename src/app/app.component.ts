@@ -15,9 +15,11 @@ export class AppComponent implements OnInit{
 
   ngOnInit() : void {
     this.user = this.securityService.getLoggedInUser();
+    this.securityService.user$.subscribe(u => this.user = u);
   }
 
   logout() : void {
     this.securityService.logout();
+    this.user = undefined;
   }
 }
