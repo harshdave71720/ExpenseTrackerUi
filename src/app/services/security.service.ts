@@ -80,7 +80,15 @@ export class SecurityService {
   public getLoggedInUser() : ApplicationUser {
     let token = localStorage.getItem(this.jwt_key);
     if(token)
-      return this.decodeToken(token);
+    {
+      if(!this.isTokenValid(token))
+      {
+        localStorage.removeItem(this.jwt_key);
+        this.user$.next(undefined);
+      } else {
+        return this.decodeToken(token);
+      }
+    }
     return undefined;
   }
 
@@ -91,6 +99,10 @@ export class SecurityService {
         this.router.navigate(['']);
   }
 
+  private isTokenValid(token : string) : boolean {
+    let jwt: { [key: string]: string } = jwt_decode(token);
+    return (+jwt.exp) * 1000 >= Date.now();
+  }
 }
 
 class TokenResponse {

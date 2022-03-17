@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<ul class="list-group list-group-flush" *ngIf="expenses.length > 0" style="list-style-type: none;">
+<ul class="list-group list-group-flush" *ngIf="expenses?.length > 0" style="list-style-type: none;">
     <li *ngFor="let expense of expenses">
         <app-expense [expense]="expense" [categories]="categories" (refreshExpensesEvent)="refreshExpenses()"></app-expense>
     </li>
