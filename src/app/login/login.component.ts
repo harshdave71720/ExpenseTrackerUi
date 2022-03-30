@@ -42,8 +42,6 @@ export class LoginComponent implements OnInit {
     if(!this.registerForm.valid)
       return;
 
-    let values = this.registerForm.value;
-    console.log(values);
     this.securityService.register(this.registerForm.value, this.activatedRoute.snapshot.queryParamMap.get('returnUrl'));
   }
 }

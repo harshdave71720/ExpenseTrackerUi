@@ -16,7 +16,6 @@ export class ExpenseService {
               private readonly toastr : ToastrService) { }
 
   public async addExpense(expense : IExpense) : Promise<IExpense> {
-    // console.log(expense);
     return await this.httpClient.post<IExpense>("https://localhost:5001/expense", expense)
     .pipe(
       catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
@@ -35,7 +34,6 @@ export class ExpenseService {
 
   public get() : Observable<IExpense[]>
   {
-    console.log("Calling API");
     return  this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense")
       .pipe(
         map(r => r.data),

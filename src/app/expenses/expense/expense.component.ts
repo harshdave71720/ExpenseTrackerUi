@@ -32,7 +32,6 @@ export class ExpenseComponent implements OnInit {
   }
 
   async addExpense() : Promise<void> {
-    // console.log(this.expense);
     await this.expenseService.addExpense(this.expense);
     this.refreshExpensesEvent.emit();
     this.newExpense = false;
