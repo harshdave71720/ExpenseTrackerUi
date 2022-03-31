@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators'
 import { IResponse } from 'src/entities/Response';
 import { ErrorService } from './error.service';
 import { ToastrService } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,7 @@ export class ExpenseService {
               private readonly toastr : ToastrService) { }
 
   public async addExpense(expense : IExpense) : Promise<IExpense> {
-    // console.log(expense);
-    return await this.httpClient.post<IExpense>("https://localhost:5001/expense", expense)
+    return await this.httpClient.post<IExpense>(`${environment.apiUrl}/expense`, expense)
     .pipe(
       catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
     )
@@ -26,7 +26,7 @@ export class ExpenseService {
 
   public async delete(expenseId : number)
   {
-    await this.httpClient.delete<IResponse<IExpense>>("https://localhost:5001/Expense/" + expenseId)
+    await this.httpClient.delete<IResponse<IExpense>>(`${environment.apiUrl}/Expense/` + expenseId)
       .pipe(
         catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
       )
@@ -35,8 +35,7 @@ export class ExpenseService {
 
   public get() : Observable<IExpense[]>
   {
-    console.log("Calling API");
-    return  this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense")
+    return  this.httpClient.get<IResponse<IExpense[]>>(`${environment.apiUrl}/Expense`)
       .pipe(
         map(r => r.data),
         catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
@@ -45,7 +44,7 @@ export class ExpenseService {
 
   public async updateExpense(expense : IExpense) : Promise<IExpense>
   {
-    return await this.httpClient.put<IResponse<IExpense>>("https://localhost:5001/Expense", expense)
+    return await this.httpClient.put<IResponse<IExpense>>(`${environment.apiUrl}/Expense`, expense)
     .pipe(
       map(r => r.data),
       catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
@@ -54,7 +53,7 @@ export class ExpenseService {
   }
 
   public getExpenseCount() : Observable<number>{
-    return this.httpClient.get<IResponse<number>>("https://localhost:5001/Expense/count")
+    return this.httpClient.get<IResponse<number>>(`${environment.apiUrl}/Expense/count`)
     .pipe(
       map(r => r.data),
       catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
@@ -64,7 +63,7 @@ export class ExpenseService {
   public getExpensePaged(limit : number, offset : number) : Observable<IExpense[]>
   {
     var params = new HttpParams( { fromString : `limit=${limit}&offset=${offset}&latestFirst=${true}`} );
-    return this.httpClient.get<IResponse<IExpense[]>>("https://localhost:5001/Expense/GetPaged", { params : params })
+    return this.httpClient.get<IResponse<IExpense[]>>(`${environment.apiUrl}/Expense/GetPaged`, { params : params })
       .pipe(
         map(r => r.data),
         catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
@@ -74,7 +73,7 @@ export class ExpenseService {
   uploadExpenses(file : File) {
     let formData = new FormData();
     formData.append("file", file, file.name);
-    this.httpClient.post<IResponse<any>>("https://localhost:5001/Expense/Upload", formData)
+    this.httpClient.post<IResponse<any>>(`${environment.apiUrl}/Expense/Upload`, formData)
     .pipe(
       catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
     )

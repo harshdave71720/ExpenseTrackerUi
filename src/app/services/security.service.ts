@@ -9,12 +9,12 @@ import { Router } from "@angular/router";
 import { IResponse } from "src/entities/Response";
 import { ErrorService } from "./error.service";
 import { ToastrService } from "ngx-toastr";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class SecurityService {
   jwt_key : string = "JWT_TOKEN";
   user : ApplicationUser;
-  baseUrl : string = "https://localhost:5001";
   user$ = new Subject<ApplicationUser>();
 
   constructor(private readonly httpClient : HttpClient, private readonly router : Router
@@ -49,7 +49,7 @@ export class SecurityService {
   register(user : UserRegister, returnUrl : string) {
     if(this.user)
       throw Error(`User ${this.user.firstname} is already logged in. Please logout first`);
-    this.httpClient.post<IResponse<any>>(`${this.baseUrl}/user/register`, user)
+    this.httpClient.post<IResponse<any>>(`${environment.apiUrl}/user/register`, user)
     .pipe(
       catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
     )
@@ -57,7 +57,7 @@ export class SecurityService {
   }
 
   private GetTokenAndUserInfo(credentials : object) : Observable<ApplicationUser | undefined> {
-    return this.httpClient.post<IResponse<TokenResponse>>(`${this.baseUrl}/user/token`, credentials)
+    return this.httpClient.post<IResponse<TokenResponse>>(`${environment.apiUrl}/user/token`, credentials)
       .pipe(
         map(t => {
           if(!t.data.token)
