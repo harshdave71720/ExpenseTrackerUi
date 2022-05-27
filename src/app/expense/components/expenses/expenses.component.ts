@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { IExpense } from 'src/entities/expense';
-import { ExpenseService } from '../services/expense.service';
-import { ICategory } from 'src/entities/category';
-import { CategoryService } from '../services/category.service';
+import { ExpenseService } from 'src/app/core/services/expense.service';
+import { IExpense } from 'src/app/core/models/expense';
+import { ICategory } from 'src/app/core/models/category';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { CategoryService } from 'src/app/core/services/category.service';
 
 @Component({
   selector: 'app-expenses',

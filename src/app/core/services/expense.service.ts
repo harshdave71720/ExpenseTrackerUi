@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { IExpense } from 'src/entities/expense';
+import { IExpense } from '../models/expense';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators'
-import { IResponse } from 'src/entities/Response';
 import { ErrorService } from './error.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
+import { IResponse } from '../models/IResponse';
 
 @Injectable({
   providedIn: 'root'

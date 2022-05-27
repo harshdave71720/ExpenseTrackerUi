@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ApplicationUser } from 'src/entities/applicationUser';
-import { SecurityService } from './services/security.service';
+import { ApplicationUser } from './core/models/applicationUser';
+import { AuthenticationService } from './core/services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -11,15 +11,15 @@ export class AppComponent implements OnInit{
   title = 'ExpenseTrackerUi';
   user : ApplicationUser = undefined;
 
-  constructor(public securityService : SecurityService) {}
+  constructor(public authenticationService : AuthenticationService) {}
 
   ngOnInit() : void {
-    this.user = this.securityService.getLoggedInUser();
-    this.securityService.user$.subscribe(u => this.user = u);
+    this.user = this.authenticationService.getLoggedInUser();
+    this.authenticationService.user$.subscribe(u => this.user = u);
   }
 
   logout() : void {
-    this.securityService.logout();
+    this.authenticationService.logout();
     this.user = undefined;
   }
 }

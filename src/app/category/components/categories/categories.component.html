@@ -9,7 +9,7 @@
         <span class="text-danger small" *ngIf="!this.categoryForm.name.untouched && categoryForm.name.errors?.maxlength">Maximum {{categoryForm.name.errors?.maxlength.requiredLength}} Characters Allowed</span>
         <span class="text-danger small" *ngIf="!this.categoryForm.name.untouched && categoryForm.name.errors?.minlength">Should Be Minimum {{categoryForm.name.errors?.minlength.requiredLength}} Characters</span>
         <ul style="list-style-type: none;" class="col">
-            <li *ngFor="let category of categories">
+            <li *ngFor="let category of   categories">
                 <app-category  [category]="category" (deleted)="refreshCategories()">{{ category.name }}</app-category>
             </li>
         </ul>

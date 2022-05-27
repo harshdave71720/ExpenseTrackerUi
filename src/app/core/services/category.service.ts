@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Category, ICategory } from 'src/entities/category';
-import { IResponse } from '../../entities/Response';
+import { Category, ICategory } from '../models/category';
+import { IResponse } from '../models/IResponse';
 import { catchError, map } from 'rxjs/operators';
 import { ErrorService } from './error.service';
 import { ToastrService } from 'ngx-toastr';

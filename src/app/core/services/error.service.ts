@@ -3,9 +3,11 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { EMPTY } from "rxjs";
-import { IResponse } from "src/entities/Response";
+import { IResponse } from "../models/IResponse";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ErrorService {
   constructor(private readonly toastr : ToastrService, private readonly router : Router){}
 

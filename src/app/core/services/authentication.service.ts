@@ -1,18 +1,20 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
-import { ApplicationUser } from "src/entities/applicationUser";
-import { UserRegister } from "src/entities/userRegister";
+import { ApplicationUser } from "../models/applicationUser";
+import { UserRegister } from "../models/userRegister";
 import jwt_decode from 'jwt-decode';
 import { catchError, map } from "rxjs/operators";
 import { Router } from "@angular/router";
-import { IResponse } from "src/entities/Response";
+import { IResponse } from "../models/IResponse";
 import { ErrorService } from "./error.service";
 import { ToastrService } from "ngx-toastr";
 import { environment } from "src/environments/environment";
 
-@Injectable()
-export class SecurityService {
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthenticationService {
   jwt_key : string = "JWT_TOKEN";
   user : ApplicationUser;
   user$ = new Subject<ApplicationUser>();
