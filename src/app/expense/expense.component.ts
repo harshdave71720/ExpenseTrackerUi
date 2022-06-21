@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 
-import { Expense, IExpense } from '../models/expense.model';
+import { IExpense } from '../models/expense.model';
 import { ICategory } from '../models/category.model';
 import { CategoryService } from '../category-feature/category.service';
 import { ExpenseService } from '../expense-feature/expense.service';
@@ -13,7 +13,7 @@ import { ExpenseService } from '../expense-feature/expense.service';
   templateUrl: './expense.component.html'
 })
 export class ExpenseComponent implements OnInit {
-  @Input() expense : IExpense = new Expense();
+  @Input() expense : IExpense;
   @Input() newExpense : boolean = false;
   @Input() categories : ICategory[] = [];
   @Output() refreshExpensesEvent = new EventEmitter<void>();
