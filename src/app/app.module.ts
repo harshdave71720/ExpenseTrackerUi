@@ -21,6 +21,7 @@ import { AuthenticationGuard } from './shared/guards/authenticationGuard';
 import { AccessHeaderInterceptor } from './shared/interceptors/accessHeaderInterceptor';
 import { ErrorService } from './services/error.service';
 import { ExpenseComponent } from './expense/expense.component';
+import { CoreModule } from './core/code.module';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ExpenseComponent } from './expense/expense.component';
     MatTableModule,
     MatPaginatorModule,
     ReactiveFormsModule,
+    CoreModule,
     ToastrModule.forRoot()
   ],
   providers : [ CategoryService, ExpenseService, AuthenticationGuard,
