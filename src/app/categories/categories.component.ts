@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from '../services/category.service';
+import { CategoryService } from '../category-feature/category.service';
 import { ICategory, Category } from 'src/entities/category';
 import { CategoryForm } from 'src/app/category/categoryForm';
 

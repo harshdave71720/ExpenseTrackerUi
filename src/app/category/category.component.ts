@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICategory } from 'src/entities/category';
-import { CategoryService } from '../services/category.service';
+import { CategoryService } from '../category-feature/category.service';
 
 @Component({
   selector: 'app-category',

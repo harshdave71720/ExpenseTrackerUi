@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Category, ICategory } from 'src/entities/category';
 import { IResponse } from '../../entities/Response';
 import { catchError, map } from 'rxjs/operators';
-import { ErrorService } from './error.service';
+import { ErrorService } from '../services/error.service';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
 

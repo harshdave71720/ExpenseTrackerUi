@@ -2,7 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IExpense } from 'src/entities/expense';
 import { ExpenseService } from '../expense-feature/expense.service';
 import { ICategory } from 'src/entities/category';
-import { CategoryService } from '../services/category.service';
+import { CategoryService } from '../category-feature/category.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({

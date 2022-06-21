@@ -12,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
 import { ExpenseFormComponent } from './expense-form/expense-form.component';
-import { CategoryService } from './services/category.service';
+import { CategoryService } from './category-feature/category.service';
 import { ExpenseService } from './expense-feature/expense.service';
 import { SecurityService } from './services/security.service';
 import { LoginComponent } from './login/login.component';
