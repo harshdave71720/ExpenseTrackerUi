@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Expense, IExpense } from 'src/entities/expense';
 import { Input } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
+
+import { Expense, IExpense } from 'src/entities/expense';
 import { ICategory } from 'src/entities/category';
 import { CategoryService } from '../category-feature/category.service';
 import { ExpenseService } from '../expense-feature/expense.service';
-import { Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-expense',

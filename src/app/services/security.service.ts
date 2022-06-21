@@ -1,14 +1,15 @@
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
-import { ApplicationUser } from "src/entities/applicationUser";
-import { UserRegister } from "src/entities/userRegister";
 import jwt_decode from 'jwt-decode';
 import { catchError, map } from "rxjs/operators";
 import { Router } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
+
+import { ApplicationUser } from "src/entities/applicationUser";
+import { UserRegister } from "src/entities/userRegister";
 import { IResponse } from "src/entities/Response";
 import { ErrorService } from "./error.service";
-import { ToastrService } from "ngx-toastr";
 import { environment } from "src/environments/environment";
 
 @Injectable()

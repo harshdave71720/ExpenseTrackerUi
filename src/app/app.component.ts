@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { ApplicationUser } from 'src/entities/applicationUser';
 import { SecurityService } from './services/security.service';
 
