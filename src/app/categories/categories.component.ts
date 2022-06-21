@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CategoryService } from '../category-feature/category.service';
-import { ICategory, Category } from '../models/category.model';
+import { ICategory } from '../models/category.model';
 import { CategoryForm } from 'src/app/category/categoryForm';
 
 @Component({
@@ -11,7 +11,7 @@ import { CategoryForm } from 'src/app/category/categoryForm';
 export class CategoriesComponent implements OnInit {
   categories : ICategory[] = [];
   categoryForm : CategoryForm;
-  newCategory : ICategory = new Category('');
+  newCategory : ICategory;
 
   constructor(private readonly categoryService : CategoryService) {
     this.categoryForm = new CategoryForm(this.newCategory);

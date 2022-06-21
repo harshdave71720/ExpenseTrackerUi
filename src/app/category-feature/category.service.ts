@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, map } from 'rxjs/operators';
 
-import { Category, ICategory } from '../models/category.model';
+import { ICategory } from '../models/category.model';
 import { IResponse } from '../models/response.model';
 import { ErrorService } from '../services/error.service';
 import { environment } from 'src/environments/environment';
@@ -23,7 +23,7 @@ export class CategoryService {
      .toPromise();
   }
 
-  async saveCategory(category : Category) : Promise<ICategory>
+  async saveCategory(category : ICategory) : Promise<ICategory>
   {
     return await this.httpClient.post<IResponse<ICategory>>(`${environment.apiUrl}/category`, category)
       .pipe(

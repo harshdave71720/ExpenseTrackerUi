@@ -1,6 +1,6 @@
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 
-import { ICategory,Category } from "../models/category.model";
+import { ICategory } from "../models/category.model";
 
 export class CategoryForm
 {
@@ -17,7 +17,9 @@ export class CategoryForm
 
     getCategory() : ICategory
     {
-        return new Category(this.name.value);
+        return {
+          name : this.name.value
+        };
     }
 }
 
