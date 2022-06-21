@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { EMPTY } from "rxjs";
 
-import { IResponse } from '../models/response.model';
+import { IResponse } from '../shared/response.model';
 
 @Injectable()
 export class ErrorService {
