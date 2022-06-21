@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 
 import { ICategory } from '../models/category.model';
 import { IResponse } from '../models/response.model';
-import { ErrorService } from '../services/error.service';
+import { ErrorService } from '../core/error.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

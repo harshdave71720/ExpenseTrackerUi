@@ -19,9 +19,8 @@ import { ExpenseService } from './expense-feature/expense.service';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationGuard } from './shared/guards/authenticationGuard';
 import { AccessHeaderInterceptor } from './shared/interceptors/accessHeaderInterceptor';
-import { ErrorService } from './services/error.service';
 import { ExpenseComponent } from './expense/expense.component';
-import { CoreModule } from './core/code.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -50,8 +49,7 @@ import { CoreModule } from './core/code.module';
                   provide : HTTP_INTERCEPTORS,
                   useClass : AccessHeaderInterceptor,
                   multi : true
-                },
-                ErrorService
+                }
               ],
   bootstrap: [AppComponent]
 })

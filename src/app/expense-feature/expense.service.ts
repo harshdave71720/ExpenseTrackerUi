@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { IExpense } from '../models/expense.model';
 import { IResponse } from '../models/response.model';
-import { ErrorService } from '../services/error.service';
+import { ErrorService } from '../core/error.service';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
