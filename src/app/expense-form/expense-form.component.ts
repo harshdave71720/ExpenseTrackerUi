@@ -4,7 +4,7 @@ import { formatDate } from '@angular/common';
 
 import { ICategory } from '../models/category.model';
 import { IExpense } from '../models/expense.model';
-import { dateInFutureValidator, negativeOrNonZeroValidator } from '../validators/formValidators';
+import { dateInFutureValidator, negativeOrNonZeroValidator } from '../shared/formValidators';
 
 
 @Component({

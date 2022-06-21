@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { IApplicationUser } from 'src/app/models/application-user.model';
+import { IApplicationUser } from 'src/app/shared/application-user.model';
 import { SecurityService } from './core/security.service';
 
 @Component({
