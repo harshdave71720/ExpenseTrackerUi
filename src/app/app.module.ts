@@ -19,6 +19,7 @@ import { ExpenseService } from './expense-feature/expense.service';
 import { LoginComponent } from './login/login.component';
 import { ExpenseComponent } from './expense/expense.component';
 import { CoreModule } from './core/core.module';
+import { DashBoardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { CoreModule } from './core/core.module';
     CategoriesComponent,
     CategoryComponent,
     ExpenseFormComponent,
-    LoginComponent
+    LoginComponent,
+    DashBoardComponent
   ],
   imports: [
     BrowserModule,

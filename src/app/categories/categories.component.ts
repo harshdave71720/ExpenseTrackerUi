@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { CategoryService } from '../category-feature/category.service';
 import { ICategory } from '../models/category.model';
@@ -12,6 +12,7 @@ export class CategoriesComponent implements OnInit {
   categories : ICategory[];
   categoryForm : CategoryForm;
   newCategory : ICategory;
+  @Output() categoriesRefreshed : EventEmitter<ICategory[]> = new EventEmitter<ICategory[]>();
 
   constructor(private readonly categoryService : CategoryService) {
     this.categoryForm = new CategoryForm(this.newCategory);
@@ -37,5 +38,6 @@ export class CategoriesComponent implements OnInit {
   async refreshCategories()
   {
     this.categories = await this.categoryService.getCategories();
+    this.categoriesRefreshed.emit(this.categories);
   }
 }

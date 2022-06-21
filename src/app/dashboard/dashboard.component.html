@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-2">
+    <app-categories (categoriesRefreshed)="refreshCategories($event)" ></app-categories>
+  </div>
+
+  <div class="col-md-10">
+      <app-expenses [categories]="categories"></app-expenses>
+  </div>
+</div>

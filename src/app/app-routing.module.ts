@@ -5,9 +5,11 @@ import { ExpensesComponent } from './expenses/expenses.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationGuard } from './core/authenticationGuard';
+import { DashBoardComponent } from './dashboard/dashboard.component';
 
 const routes : Routes = [
-  { path : '', redirectTo : '/categories', pathMatch : 'full'},
+  { path : '', redirectTo : '/home', pathMatch : 'full'},
+  { path : 'home', component : DashBoardComponent, canActivate : [AuthenticationGuard]},
   { path : 'expenses/paged', component : ExpensesComponent, canActivate : [AuthenticationGuard]},
   { path : 'categories', component : CategoriesComponent, canActivate : [AuthenticationGuard]},
   { path : 'login', component : LoginComponent}
