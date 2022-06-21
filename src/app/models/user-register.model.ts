@@ -1,4 +1,4 @@
-export class UserRegister {
+export interface IUserRegister {
   email : string;
   firstname : string;
   lastname? : string;

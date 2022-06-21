@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 
 import { IApplicationUser } from "../models/application-user.model";
-import { UserRegister } from "../models/user-register.model";
+import { IUserRegister } from "../models/user-register.model";
 import { IResponse } from "../models/response.model";
 import { ErrorService } from "./error.service";
 import { environment } from "src/environments/environment";
@@ -47,7 +47,7 @@ export class SecurityService {
     this.router.navigate(['login']);
   }
 
-  register(user : UserRegister, returnUrl : string) {
+  register(user : IUserRegister, returnUrl : string) {
     if(this.user)
       throw Error(`User ${this.user.firstname} is already logged in. Please logout first`);
     this.httpClient.post<IResponse<any>>(`${environment.apiUrl}/user/register`, user)
