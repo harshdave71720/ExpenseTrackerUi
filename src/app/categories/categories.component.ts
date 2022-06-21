@@ -9,7 +9,7 @@ import { CategoryForm } from 'src/app/category/categoryForm';
   templateUrl: './categories.component.html'
 })
 export class CategoriesComponent implements OnInit {
-  categories : ICategory[] = [];
+  categories : ICategory[];
   categoryForm : CategoryForm;
   newCategory : ICategory;
 

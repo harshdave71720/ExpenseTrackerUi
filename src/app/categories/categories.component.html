@@ -5,9 +5,9 @@
             <input type="text" [formControl]="categoryForm.name" class="form-control">
             <button class="form-control btn-primary" (click)="addCategory()">Add</button>
         </div>
-        <span class="text-danger small" *ngIf="!this.categoryForm.name.untouched && categoryForm.name.errors?.AllWhiteSpace">{{categoryForm.name.errors?.AllWhiteSpace.value}}</span>
-        <span class="text-danger small" *ngIf="!this.categoryForm.name.untouched && categoryForm.name.errors?.maxlength">Maximum {{categoryForm.name.errors?.maxlength.requiredLength}} Characters Allowed</span>
-        <span class="text-danger small" *ngIf="!this.categoryForm.name.untouched && categoryForm.name.errors?.minlength">Should Be Minimum {{categoryForm.name.errors?.minlength.requiredLength}} Characters</span>
+        <span class="text-danger small" *ngIf="!this.categoryForm.name.untouched && categoryForm.name.errors?.['AllWhiteSpace']">{{categoryForm.name.errors?.['AllWhiteSpace'].value}}</span>
+        <span class="text-danger small" *ngIf="!this.categoryForm.name.untouched && categoryForm.name.errors?.['maxlength']">Maximum {{categoryForm.name.errors?.['maxlength'].requiredLength}} Characters Allowed</span>
+        <span class="text-danger small" *ngIf="!this.categoryForm.name.untouched && categoryForm.name.errors?.['minlength']">Should Be Minimum {{categoryForm.name.errors?.['minlength'].requiredLength}} Characters</span>
         <ul style="list-style-type: none;" class="col">
             <li *ngFor="let category of categories">
                 <app-category  [category]="category" (deleted)="refreshCategories()">{{ category.name }}</app-category>

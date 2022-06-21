@@ -72,8 +72,8 @@ export class SecurityService {
   private decodeToken(token : string) : IApplicationUser {
     let jwt: { [key: string]: string } = jwt_decode(token);
     let user : IApplicationUser = {
-      firstname : jwt.FirstName,
-      lastname : jwt.LastName,
+      firstname : jwt?.['FirstName'],
+      lastname : jwt?.['LastName'],
       bearerToken : token
     };
     return user;
@@ -103,7 +103,7 @@ export class SecurityService {
 
   private isTokenValid(token : string) : boolean {
     let jwt: { [key: string]: string } = jwt_decode(token);
-    return (+jwt.exp) * 1000 >= Date.now();
+    return (+jwt?.['exp']) * 1000 >= Date.now();
   }
 }
 
