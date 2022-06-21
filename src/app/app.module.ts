@@ -20,7 +20,7 @@ import { AuthenticationGuard } from './shared/guards/authenticationGuard';
 import { AccessHeaderInterceptor } from './shared/interceptors/accessHeaderInterceptor';
 import { ErrorService } from './services/error.service';
 import { ToastrModule } from 'ngx-toastr';
-import { ExpenseComponent } from './expenses/expense/expense.component';
+import { ExpenseComponent } from './expense/expense.component';
 
 @NgModule({
   declarations: [
