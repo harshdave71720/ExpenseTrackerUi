@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
-import { IExpense } from '../models/expense.model';
+import { IExpense } from './expense.model';
 import { IResponse } from '../shared/response.model';
 import { ErrorService } from '../core/error.service';
 import { environment } from 'src/environments/environment';

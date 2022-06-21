@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 
-import { ICategory } from "src/app/models/category.model";
+import { ICategory } from "src/app/category/category.model";
 
 @Component({
   selector : 'app-dashboard',

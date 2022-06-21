@@ -1,10 +1,10 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
-import { IExpense } from '../models/expense.model';
-import { ExpenseService } from '../expense-feature/expense.service';
-import { ICategory } from '../models/category.model';
-import { CategoryService } from '../category-feature/category.service';
+import { IExpense } from '../../expense.model';
+import { ExpenseService } from '../../expense.service';
+import { ICategory } from '../../../category/category.model';
+import { CategoryService } from '../../../category/category.service';
 
 @Component({
   selector: 'app-expenses',

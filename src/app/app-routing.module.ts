@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ExpensesComponent } from './expenses/expenses.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { LoginComponent } from './login/login.component';
+import { ExpensesComponent } from './expense/components/expenses/expenses.component';
+import { CategoriesComponent } from './category/components/categories/categories.component';
+import { LoginComponent } from './core/login/login.component';
 import { AuthenticationGuard } from './core/authenticationGuard';
 import { DashBoardComponent } from './dashboard/dashboard.component';
 

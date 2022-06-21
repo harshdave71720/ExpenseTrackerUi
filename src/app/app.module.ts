@@ -10,14 +10,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
-import { ExpensesComponent } from './expenses/expenses.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { CategoryComponent } from './category/category.component';
-import { ExpenseFormComponent } from './expense-form/expense-form.component';
-import { CategoryService } from './category-feature/category.service';
-import { ExpenseService } from './expense-feature/expense.service';
-import { LoginComponent } from './login/login.component';
-import { ExpenseComponent } from './expense/expense.component';
+import { ExpensesComponent } from './expense/components/expenses/expenses.component';
+import { CategoriesComponent } from './category/components/categories/categories.component';
+import { CategoryComponent } from './category/components/category/category.component';
+import { ExpenseFormComponent } from './expense/components/expense-form/expense-form.component';
+import { CategoryService } from './category/category.service';
+import { ExpenseService } from './expense/expense.service';
+import { LoginComponent } from './core/login/login.component';
+import { ExpenseComponent } from './expense/components/expense/expense.component';
 import { CoreModule } from './core/core.module';
 import { DashBoardComponent } from './dashboard/dashboard.component';
 
