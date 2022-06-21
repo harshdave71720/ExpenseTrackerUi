@@ -3,11 +3,11 @@ export interface ICategory {
 }
 
 export class Category implements ICategory
-{    
+{
     name : string;
 
     constructor(name : string)
     {
-        this.name = name; 
+        this.name = name;
     }
 }

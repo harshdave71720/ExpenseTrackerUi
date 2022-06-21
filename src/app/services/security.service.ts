@@ -6,9 +6,9 @@ import { catchError, map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 
-import { ApplicationUser } from "src/entities/applicationUser";
-import { UserRegister } from "src/entities/userRegister";
-import { IResponse } from "src/entities/Response";
+import { ApplicationUser } from "../models/application-user.model";
+import { UserRegister } from "../models/user-register.model";
+import { IResponse } from "../models/response.model";
 import { ErrorService } from "./error.service";
 import { environment } from "src/environments/environment";
 

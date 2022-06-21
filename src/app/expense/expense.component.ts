@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 
-import { Expense, IExpense } from 'src/entities/expense';
-import { ICategory } from 'src/entities/category';
+import { Expense, IExpense } from '../models/expense.model';
+import { ICategory } from '../models/category.model';
 import { CategoryService } from '../category-feature/category.service';
 import { ExpenseService } from '../expense-feature/expense.service';
 
