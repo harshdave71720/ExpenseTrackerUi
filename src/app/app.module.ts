@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
@@ -17,8 +17,6 @@ import { ExpenseFormComponent } from './expense-form/expense-form.component';
 import { CategoryService } from './category-feature/category.service';
 import { ExpenseService } from './expense-feature/expense.service';
 import { LoginComponent } from './login/login.component';
-import { AuthenticationGuard } from './core/authenticationGuard';
-import { AccessHeaderInterceptor } from './shared/interceptors/accessHeaderInterceptor';
 import { ExpenseComponent } from './expense/expense.component';
 import { CoreModule } from './core/core.module';
 
@@ -44,12 +42,7 @@ import { CoreModule } from './core/core.module';
     CoreModule,
     ToastrModule.forRoot()
   ],
-  providers : [ CategoryService, ExpenseService,
-                {
-                  provide : HTTP_INTERCEPTORS,
-                  useClass : AccessHeaderInterceptor,
-                  multi : true
-                }
+  providers : [ CategoryService, ExpenseService
               ],
   bootstrap: [AppComponent]
 })
