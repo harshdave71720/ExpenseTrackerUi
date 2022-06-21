@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ApplicationUser } from 'src/app/models/application-user.model';
+import { IApplicationUser } from 'src/app/models/application-user.model';
 import { SecurityService } from './services/security.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { SecurityService } from './services/security.service';
 })
 export class AppComponent implements OnInit{
   title = 'ExpenseTrackerUi';
-  user : ApplicationUser = undefined;
+  user : IApplicationUser = undefined;
 
   constructor(public securityService : SecurityService) {}
 

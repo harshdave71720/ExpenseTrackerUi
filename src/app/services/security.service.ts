@@ -6,7 +6,7 @@ import { catchError, map } from "rxjs/operators";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 
-import { ApplicationUser } from "../models/application-user.model";
+import { IApplicationUser } from "../models/application-user.model";
 import { UserRegister } from "../models/user-register.model";
 import { IResponse } from "../models/response.model";
 import { ErrorService } from "./error.service";
@@ -15,8 +15,8 @@ import { environment } from "src/environments/environment";
 @Injectable()
 export class SecurityService {
   jwt_key : string = "JWT_TOKEN";
-  user : ApplicationUser;
-  user$ = new Subject<ApplicationUser>();
+  user : IApplicationUser;
+  user$ = new Subject<IApplicationUser>();
 
   constructor(private readonly httpClient : HttpClient, private readonly router : Router
               , private readonly errorService : ErrorService
@@ -57,7 +57,7 @@ export class SecurityService {
     .subscribe(() => this.login(user.email, user.password, returnUrl));
   }
 
-  private GetTokenAndUserInfo(credentials : object) : Observable<ApplicationUser | undefined> {
+  private GetTokenAndUserInfo(credentials : object) : Observable<IApplicationUser | undefined> {
     return this.httpClient.post<IResponse<TokenResponse>>(`${environment.apiUrl}/user/token`, credentials)
       .pipe(
         map(t => {
@@ -69,16 +69,17 @@ export class SecurityService {
       );
   }
 
-  private decodeToken(token : string) : ApplicationUser {
+  private decodeToken(token : string) : IApplicationUser {
     let jwt: { [key: string]: string } = jwt_decode(token);
-    let user = new ApplicationUser();
-    user.firstname = jwt.FirstName;
-    user.lastname = jwt.LastName;
-    user.bearerToken = token;
+    let user : IApplicationUser = {
+      firstname : jwt.FirstName,
+      lastname : jwt.LastName,
+      bearerToken : token
+    };
     return user;
   }
 
-  public getLoggedInUser() : ApplicationUser {
+  public getLoggedInUser() : IApplicationUser {
     let token = localStorage.getItem(this.jwt_key);
     if(token)
     {

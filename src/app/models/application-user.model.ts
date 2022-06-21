@@ -1,6 +1,6 @@
-export class ApplicationUser {
-  email : string;
+export interface IApplicationUser {
+  email? : string;
   firstname : string;
   lastname? : string;
-  bearerToken? : string = "";
+  bearerToken? : string;
 }
