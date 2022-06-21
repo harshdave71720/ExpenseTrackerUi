@@ -11,7 +11,7 @@ import { ExpensesComponent } from './expenses/expenses.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CategoriesComponent } from './categories/categories.component';
 import { CategoryComponent } from './category/category.component';
-import { ExpenseFormComponent } from './expenses/expense-form/expense-form.component';
+import { ExpenseFormComponent } from './expense-form/expense-form.component';
 import { CategoryService } from './services/category.service';
 import { ExpenseService } from './services/expense.service';
 import { SecurityService } from './services/security.service';
