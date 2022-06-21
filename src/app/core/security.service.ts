@@ -7,7 +7,7 @@ import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 
 import { IApplicationUser } from "../shared/application-user.model";
-import { IUserRegister } from "../models/user-register.model";
+import { IUserRegister } from "./user-register.model";
 import { IResponse } from "../shared/response.model";
 import { ErrorService } from "./error.service";
 import { environment } from "src/environments/environment";
