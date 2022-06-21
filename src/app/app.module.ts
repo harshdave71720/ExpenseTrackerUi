@@ -17,7 +17,7 @@ import { ExpenseFormComponent } from './expense-form/expense-form.component';
 import { CategoryService } from './category-feature/category.service';
 import { ExpenseService } from './expense-feature/expense.service';
 import { LoginComponent } from './login/login.component';
-import { AuthenticationGuard } from './shared/guards/authenticationGuard';
+import { AuthenticationGuard } from './core/authenticationGuard';
 import { AccessHeaderInterceptor } from './shared/interceptors/accessHeaderInterceptor';
 import { ExpenseComponent } from './expense/expense.component';
 import { CoreModule } from './core/core.module';
@@ -44,7 +44,7 @@ import { CoreModule } from './core/core.module';
     CoreModule,
     ToastrModule.forRoot()
   ],
-  providers : [ CategoryService, ExpenseService, AuthenticationGuard,
+  providers : [ CategoryService, ExpenseService,
                 {
                   provide : HTTP_INTERCEPTORS,
                   useClass : AccessHeaderInterceptor,

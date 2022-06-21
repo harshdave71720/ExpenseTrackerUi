@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ExpensesComponent } from './expenses/expenses.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { LoginComponent } from './login/login.component';
-import { AuthenticationGuard } from './shared/guards/authenticationGuard';
+import { AuthenticationGuard } from './core/authenticationGuard';
 
 const routes : Routes = [
   { path : '', redirectTo : '/categories', pathMatch : 'full'},
