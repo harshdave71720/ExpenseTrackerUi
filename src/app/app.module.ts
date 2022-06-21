@@ -16,7 +16,6 @@ import { CategoryComponent } from './category/category.component';
 import { ExpenseFormComponent } from './expense-form/expense-form.component';
 import { CategoryService } from './category-feature/category.service';
 import { ExpenseService } from './expense-feature/expense.service';
-import { SecurityService } from './services/security.service';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationGuard } from './shared/guards/authenticationGuard';
 import { AccessHeaderInterceptor } from './shared/interceptors/accessHeaderInterceptor';
@@ -44,8 +43,7 @@ import { ExpenseComponent } from './expense/expense.component';
     ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
-  //providers: [{provide: "ICategoryService", useClass: CategoryService}],
-  providers : [ CategoryService, ExpenseService, SecurityService, AuthenticationGuard,
+  providers : [ CategoryService, ExpenseService, AuthenticationGuard,
                 {
                   provide : HTTP_INTERCEPTORS,
                   useClass : AccessHeaderInterceptor,

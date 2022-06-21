@@ -9,7 +9,7 @@ import { ToastrService } from "ngx-toastr";
 import { IApplicationUser } from "../models/application-user.model";
 import { IUserRegister } from "../models/user-register.model";
 import { IResponse } from "../models/response.model";
-import { ErrorService } from "./error.service";
+import { ErrorService } from "../services/error.service";
 import { environment } from "src/environments/environment";
 
 @Injectable()

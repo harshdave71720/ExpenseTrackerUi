@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 
-import { SecurityService } from "src/app/services/security.service";
+import { SecurityService } from "src/app/core/security.service";
 
 @Component({
   selector : "app-login",
