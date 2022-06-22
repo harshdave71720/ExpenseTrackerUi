@@ -3,7 +3,7 @@ import { Input } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 
 import { IExpense } from '../../expense.model';
-import { ICategory } from '../../../category/category.model';
+import { ICategory } from '../../../shared/category.model';
 import { ExpenseService } from '../../expense.service';
 
 

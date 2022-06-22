@@ -3,7 +3,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { IExpense } from '../../expense.model';
 import { ExpenseService } from '../../expense.service';
-import { ICategory } from '../../../category/category.model';
+import { ICategory } from '../../../shared/category.model';
 import { CategoryService } from '../../../category/category.service';
 
 @Component({
@@ -20,13 +20,11 @@ export class ExpensesComponent implements OnInit {
   fileToUpload : File = undefined;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private readonly expenseService : ExpenseService, private categoryService : CategoryService) {
+  constructor(private readonly expenseService : ExpenseService) {
   }
 
   async ngOnInit(): Promise<void> {
     this.pageSize = this.pageSizeOptions[0];
-    if(!this.categories)
-      this.categories = await this.categoryService.getCategories();
     this.expenses = await this.expenseService.getExpensePaged(this.pageSize, 0).toPromise();
     this.expenseService.getExpenseCount().subscribe(count => this.totalCount = count);
   }

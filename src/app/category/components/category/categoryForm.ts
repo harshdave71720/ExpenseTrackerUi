@@ -1,6 +1,6 @@
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 
-import { ICategory } from "../../category.model";
+import { ICategory } from "../../../shared/category.model";
 
 export class CategoryForm
 {
