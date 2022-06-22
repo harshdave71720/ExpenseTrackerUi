@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 
-import { IResponse } from "./response.model";
+import { IResponse } from "./models/response.model";
 
 @NgModule({
   declarations: [],
