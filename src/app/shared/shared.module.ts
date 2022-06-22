@@ -1,9 +1,10 @@
 import { NgModule } from "@angular/core";
 
-import { IResponse } from "./models/response.model";
+import { ToastrModule } from "ngx-toastr";
 
 @NgModule({
+  imports : [ToastrModule.forRoot()],
   declarations: [],
-  exports : []
+  exports : [ToastrModule]
 })
 export class SharedModule {}

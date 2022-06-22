@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { IApplicationUser } from 'src/app/shared/models/application-user.model';
-import { SecurityService } from './core/security.service';
+import { SecurityService } from './core/services/security.service';
 
 @Component({
   selector: 'app-root',

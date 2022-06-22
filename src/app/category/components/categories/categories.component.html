@@ -13,10 +13,8 @@
   *ngIf="!this.categoryForm.name.untouched && categoryForm.name.errors?.['minlength']">Should Be Minimum
   {{categoryForm.name.errors?.['minlength'].requiredLength}} Characters</span>
 <ul style="list-style-type: none" class="col">
-  <li *ngFor="let category of categories">
-    <app-category [category]="category" (deleted)="refreshCategories()">{{
-      category.name
-      }}
+  <li *ngFor="let category of metadataService.categoryNames$ | async as categories">
+    <app-category [categoryName] = "category" (deleted)="refreshCategories()">
     </app-category>
   </li>
 </ul>

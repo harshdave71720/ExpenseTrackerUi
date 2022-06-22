@@ -3,23 +3,21 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CategoryService } from '../../category.service';
 import { ICategory } from '../../category.model';
 import { CategoryForm } from 'src/app/category/components/category/categoryForm';
+import { MetaDataService } from 'src/app/core/services/metadata.service';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html'
 })
 export class CategoriesComponent implements OnInit {
-  categories : ICategory[];
   categoryForm : CategoryForm;
   newCategory : ICategory;
-  @Output() categoriesRefreshed : EventEmitter<ICategory[]> = new EventEmitter<ICategory[]>();
 
-  constructor(private readonly categoryService : CategoryService) {
+  constructor(private readonly categoryService : CategoryService
+              ,readonly metadataService : MetaDataService) {}
+
+  ngOnInit(): void {
     this.categoryForm = new CategoryForm(this.newCategory);
-  }
-
-  async ngOnInit(): Promise<void> {
-    this.refreshCategories();
   }
 
   async addCategory() : Promise<void>
@@ -32,12 +30,10 @@ export class CategoriesComponent implements OnInit {
     }
 
     await this.categoryService.saveCategory(this.categoryForm.getCategory());
-    await this.refreshCategories();
+    this.metadataService.refreshCategoryNames();
   }
 
-  async refreshCategories()
-  {
-    this.categories = await this.categoryService.getCategories();
-    this.categoriesRefreshed.emit(this.categories);
+  refreshCategories() : void {
+    this.metadataService.refreshCategoryNames();
   }
 }

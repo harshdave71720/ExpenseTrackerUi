@@ -9,6 +9,7 @@ import { CategoryService } from '../../category.service';
 })
 export class CategoryComponent implements OnInit {
   @Input() category : ICategory;
+  @Input() categoryName : string;
   @Output() deleted : EventEmitter<void> = new EventEmitter<void>();
   constructor(readonly categoryService : CategoryService) { }
 
@@ -17,7 +18,7 @@ export class CategoryComponent implements OnInit {
 
   async delete(): Promise<void>
   {
-    await this.categoryService.deleteCategory(this.category.name);
+    await this.categoryService.deleteCategory(this.categoryName);
     this.deleted.emit();
   }
 }

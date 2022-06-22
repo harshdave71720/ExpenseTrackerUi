@@ -1,18 +1,17 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MetaDataService } from 'src/app/core/services/metadata.service';
 
 import { IExpense } from '../../expense.model';
 import { ExpenseService } from '../../expense.service';
-import { ICategory } from '../../../category/category.model';
-import { CategoryService } from '../../../category/category.service';
 
 @Component({
   selector: 'app-expenses',
   templateUrl: './expenses.component.html'
 })
 export class ExpensesComponent implements OnInit {
-  categories : string[] = [];
   expenses : IExpense[] = [];
+  categories : string[] = [];
   newExpenseSelected : boolean = false;
   totalCount : number = 0;
   pageSize : number = 0;
@@ -20,14 +19,15 @@ export class ExpensesComponent implements OnInit {
   fileToUpload : File = undefined;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private readonly expenseService : ExpenseService) {
+  constructor(private readonly expenseService : ExpenseService
+              ,private readonly metadataService : MetaDataService) {
   }
 
   async ngOnInit(): Promise<void> {
     this.pageSize = this.pageSizeOptions[0];
     this.expenses = await this.expenseService.getExpensePaged(this.pageSize, 0).toPromise();
-    this.categories = await this.expenseService.getCategoryNames();
     this.expenseService.getExpenseCount().subscribe(count => this.totalCount = count);
+    this.metadataService.categoryNames$.subscribe(c => this.categories = c);
   }
 
   async refreshExpenses()

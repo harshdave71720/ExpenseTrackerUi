@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { ExpensesComponent } from './expense/components/expenses/expenses.component';
@@ -20,6 +19,7 @@ import { LoginComponent } from './core/login/login.component';
 import { ExpenseComponent } from './expense/components/expense/expense.component';
 import { CoreModule } from './core/core.module';
 import { DashBoardComponent } from './dashboard/dashboard.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { DashBoardComponent } from './dashboard/dashboard.component';
     CategoryComponent,
     ExpenseFormComponent,
     LoginComponent,
-    DashBoardComponent
+    DashBoardComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +42,7 @@ import { DashBoardComponent } from './dashboard/dashboard.component';
     MatPaginatorModule,
     ReactiveFormsModule,
     CoreModule,
-    ToastrModule.forRoot()
+    SharedModule
   ],
   providers : [ CategoryService, ExpenseService
               ],
