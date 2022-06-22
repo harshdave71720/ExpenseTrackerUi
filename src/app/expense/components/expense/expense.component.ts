@@ -4,7 +4,6 @@ import { Output, EventEmitter } from '@angular/core';
 
 import { IExpense } from '../../expense.model';
 import { ICategory } from '../../../category/category.model';
-import { CategoryService } from '../../../category/category.service';
 import { ExpenseService } from '../../expense.service';
 
 
@@ -14,13 +13,11 @@ import { ExpenseService } from '../../expense.service';
 })
 export class ExpenseComponent implements OnInit {
   @Input() expense : IExpense;
-  @Input() newExpense : boolean = false;
-  @Input() categories : ICategory[] = [];
   @Output() refreshExpensesEvent = new EventEmitter<void>();
-  editOn : boolean = false;
+  @Input() categories : ICategory[] = [];
+  editMode : boolean = false;
 
-  constructor(private readonly categoryService : CategoryService,
-              private readonly expenseService : ExpenseService) { }
+  constructor(private readonly expenseService : ExpenseService) { }
 
   ngOnInit(): void {
   }
@@ -33,21 +30,15 @@ export class ExpenseComponent implements OnInit {
     this.refreshExpensesEvent.emit();
   }
 
-  async addExpense() : Promise<void> {
-    await this.expenseService.addExpense(this.expense);
-    this.refreshExpensesEvent.emit();
-    this.newExpense = false;
-  }
-
   async editClicked() : Promise<void>
   {
-    this.editOn = true;
+    this.editMode = true;
   }
 
   async save() : Promise<void>
   {
     this.expense = await this.expenseService.updateExpense(this.expense);
-    this.editOn = false;
+    this.editMode = false;
   }
 
   onEdit(exp : IExpense)
@@ -55,11 +46,4 @@ export class ExpenseComponent implements OnInit {
     this.expense = exp;
     this.save();
   }
-
-  onAdd(exp : IExpense)
-  {
-    this.expense = exp;
-    this.addExpense();
-  }
-
 }

@@ -1,29 +1,27 @@
 <div class="row">
-  <div class="col-md-10" *ngIf="editOn">
-    <app-expense-form *ngIf="editOn" [expense]="expense" [editMode]="editOn"
-    [categories]="categories" (edited)="onEdit($event)" (added)="onAdd($event)"
+  <div class="col-md-12" *ngIf="editMode">
+    <app-expense-form [expense]="expense" [editMode]="editMode"
+    [categories]="categories" (edited)="onEdit($event)"
     ></app-expense-form>
   </div>
-
-
-  <div class="col-md-10 row" *ngIf="!editOn">
-    <div class="col-md-2" *ngIf="!editOn">
-      <h2>{{ expense.amount | currency:"INR"}}</h2>
+  <div class="col-md-12 row" *ngIf="!editMode">
+    <div class="col-md-10 row" >
+      <div class="col-md-2">
+        <h2>{{ expense.amount | currency:"INR"}}</h2>
+      </div>
+      <div class="col-md-2">
+          <h2>{{ expense.date | date:"dd-MM-yyyy" }}</h2>
+      </div>
+      <div class="col-md-2">
+          <h2>{{expense.categoryName}}</h2>
+      </div>
+      <div class="col-md-4">
+          <h2>{{expense.description}}</h2>
+      </div>
     </div>
-    <div class="col-md-2" *ngIf="!editOn">
-        <h2>{{ expense.date | date:"dd-MM-yyyy" }}</h2>
-    </div>
-    <div class="col-md-2" *ngIf="!editOn">
-        <h2>{{expense.categoryName}}</h2>
-    </div>
-    <div class="col-md-4" *ngIf="!editOn">
-        <h2>{{expense.description}}</h2>
+    <div class="col-md-2">
+      <button class="btn" (click)="editClicked()"><img src="../../assets/images/edit.png" alt="edit" width="25px" height="25px" title="edit"></button>
+      <button class="btn" (click)="delete()"><img src="../../assets/images/delete.png" alt="delete" width="25px" height="25px" title="delete"></button>
     </div>
   </div>
-  <div class="col-md-2">
-    <button class="btn" (click)="editClicked()" [hidden]="editOn"><img src="../../assets/images/edit.png" alt="edit" width="25px" height="25px" title="edit"></button>
-    <button class="btn" (click)="save()" [hidden]="!editOn"><img src="../../assets/images/save.jpg" alt="save" width="25px" height="25px" title="edit" ></button>
-    <button class="btn" (click)="delete()"><img src="../../assets/images/delete.png" alt="delete" width="25px" height="25px" title="delete"></button>
-  </div>
-
 </div>
