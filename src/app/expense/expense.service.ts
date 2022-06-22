@@ -80,5 +80,13 @@ export class ExpenseService {
     )
     .subscribe();
   }
+
+  async getCategoryNames() : Promise<string[]> {
+    return this.httpClient.get<IResponse<string[]>>(`${environment.apiUrl}/category/names`)
+      .pipe(
+        map(r => r.data),
+        catchError((error : HttpErrorResponse) => this.errorService.handleError(error, this.toastr))
+      ).toPromise();
+  }
 }
 

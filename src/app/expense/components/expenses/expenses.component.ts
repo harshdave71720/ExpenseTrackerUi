@@ -11,7 +11,7 @@ import { CategoryService } from '../../../category/category.service';
   templateUrl: './expenses.component.html'
 })
 export class ExpensesComponent implements OnInit {
-  @Input() categories : ICategory[];
+  categories : string[] = [];
   expenses : IExpense[] = [];
   newExpenseSelected : boolean = false;
   totalCount : number = 0;
@@ -26,6 +26,7 @@ export class ExpensesComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.pageSize = this.pageSizeOptions[0];
     this.expenses = await this.expenseService.getExpensePaged(this.pageSize, 0).toPromise();
+    this.categories = await this.expenseService.getCategoryNames();
     this.expenseService.getExpenseCount().subscribe(count => this.totalCount = count);
   }
 

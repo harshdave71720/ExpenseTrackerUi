@@ -14,7 +14,7 @@ import { ExpenseService } from '../../expense.service';
 export class ExpenseComponent implements OnInit {
   @Input() expense : IExpense;
   @Output() refreshExpensesEvent = new EventEmitter<void>();
-  @Input() categories : ICategory[] = [];
+  @Input() categories : string[] = [];
   editMode : boolean = false;
 
   constructor(private readonly expenseService : ExpenseService) { }

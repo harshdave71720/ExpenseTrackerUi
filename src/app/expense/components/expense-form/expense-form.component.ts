@@ -13,7 +13,7 @@ import { dateInFutureValidator, negativeOrNonZeroValidator } from '../../../shar
 })
 export class ExpenseFormComponent implements OnInit {
   @Input() expense : IExpense;
-  @Input() categories : ICategory[];
+  @Input() categories : string[];
   @Input() editMode : boolean = false;
 
   @Output() edited : EventEmitter<IExpense> = new EventEmitter<IExpense>();
