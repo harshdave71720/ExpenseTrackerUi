@@ -3,7 +3,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 import { IExpense } from '../../expense.model';
 import { ExpenseService } from '../../expense.service';
-import { ICategory } from '../../../shared/models/category.model';
+import { ICategory } from '../../../category/category.model';
 import { CategoryService } from '../../../category/category.service';
 
 @Component({

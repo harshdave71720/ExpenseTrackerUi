@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { formatDate } from '@angular/common';
 
-import { ICategory } from '../../../shared/models/category.model';
+import { ICategory } from '../../../category/category.model';
 import { IExpense } from '../../expense.model';
 import { dateInFutureValidator, negativeOrNonZeroValidator } from '../../../shared/formValidators';
 
