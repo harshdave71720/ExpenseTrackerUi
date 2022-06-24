@@ -15,7 +15,7 @@ import { CategoryComponent } from './category/components/category/category.compo
 import { ExpenseFormComponent } from './expense/components/expense-form/expense-form.component';
 import { CategoryService } from './category/category.service';
 import { ExpenseService } from './expense/expense.service';
-import { LoginComponent } from './core/login/login.component';
+import { LoginComponent } from './user/login/login.component';
 import { ExpenseComponent } from './expense/components/expense/expense.component';
 import { CoreModule } from './core/core.module';
 import { DashBoardComponent } from './dashboard/dashboard.component';
