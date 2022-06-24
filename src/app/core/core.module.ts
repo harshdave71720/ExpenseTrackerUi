@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { SecurityService } from "./services/security.service";
@@ -11,7 +10,7 @@ import { MetaDataService } from "./services/metadata.service";
 
 
 @NgModule({
-  imports : [ CommonModule, SharedModule ],
+  imports : [ SharedModule ],
   declarations: [],
   exports : [ ],
   providers : [ SecurityService, ErrorService, AuthenticationGuard, MetaDataService,

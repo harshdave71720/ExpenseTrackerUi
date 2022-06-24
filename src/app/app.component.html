@@ -8,7 +8,7 @@
         </div>
         <div class="navbar-nav ms-auto">
           <a class="nav-item nav-link text-white bg-dark" *ngIf="user">{{ user?.firstname }}</a>
-          <a class="nav-item nav-link text-white bg-dark" [routerLink]="['login']" *ngIf="!user">Login</a>
+          <a class="nav-item nav-link text-white bg-dark" [routerLink]="['users/login']" *ngIf="!user">Login</a>
           <a class="nav-item nav-link text-white bg-dark" *ngIf="user" (click)="logout()">Logout</a>
         </div>
     </div>
