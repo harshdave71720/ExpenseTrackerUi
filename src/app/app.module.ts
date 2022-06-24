@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ExpensesComponent } from './expense/components/expenses/expenses.component';
@@ -15,7 +14,6 @@ import { CategoryComponent } from './category/components/category/category.compo
 import { ExpenseFormComponent } from './expense/components/expense-form/expense-form.component';
 import { CategoryService } from './category/category.service';
 import { ExpenseService } from './expense/expense.service';
-import { LoginComponent } from './user/login/login.component';
 import { ExpenseComponent } from './expense/components/expense/expense.component';
 import { CoreModule } from './core/core.module';
 import { DashBoardComponent } from './dashboard/dashboard.component';
@@ -29,7 +27,6 @@ import { SharedModule } from './shared/shared.module';
     CategoriesComponent,
     CategoryComponent,
     ExpenseFormComponent,
-    LoginComponent,
     DashBoardComponent,
   ],
   imports: [
@@ -40,7 +37,6 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
-    ReactiveFormsModule,
     CoreModule,
     SharedModule
   ],
