@@ -1,26 +1,23 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { ExpensesComponent } from './expenses/expenses.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CategoriesComponent } from './categories/categories.component';
-import { CategoryComponent } from './categories/category/category.component';
-import { ExpenseFormComponent } from './expenses/expense-form/expense-form.component';
-import { CategoryService } from './services/category.service';
-import { ExpenseService } from './services/expense.service';
-import { SecurityService } from './services/security.service';
-import { LoginComponent } from './login/login.component';
-import { AuthenticationGuard } from './shared/guards/authenticationGuard';
-import { AccessHeaderInterceptor } from './shared/interceptors/accessHeaderInterceptor';
-import { ErrorService } from './services/error.service';
-import { ToastrModule } from 'ngx-toastr';
-import { ExpenseComponent } from './expenses/expense/expense.component';
+
+import { AppComponent } from './app.component';
+import { ExpensesComponent } from './expense/components/expenses/expenses.component';
+import { CategoriesComponent } from './category/components/categories/categories.component';
+import { CategoryComponent } from './category/components/category/category.component';
+import { ExpenseFormComponent } from './expense/components/expense-form/expense-form.component';
+import { CategoryService } from './category/category.service';
+import { ExpenseService } from './expense/expense.service';
+import { ExpenseComponent } from './expense/components/expense/expense.component';
+import { CoreModule } from './core/core.module';
+import { DashBoardComponent } from './dashboard/dashboard.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +27,7 @@ import { ExpenseComponent } from './expenses/expense/expense.component';
     CategoriesComponent,
     CategoryComponent,
     ExpenseFormComponent,
-    LoginComponent
+    DashBoardComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,17 +37,10 @@ import { ExpenseComponent } from './expenses/expense/expense.component';
     BrowserAnimationsModule,
     MatTableModule,
     MatPaginatorModule,
-    ReactiveFormsModule,
-    ToastrModule.forRoot()
+    CoreModule,
+    SharedModule
   ],
-  //providers: [{provide: "ICategoryService", useClass: CategoryService}],
-  providers : [ CategoryService, ExpenseService, SecurityService, AuthenticationGuard,
-                {
-                  provide : HTTP_INTERCEPTORS,
-                  useClass : AccessHeaderInterceptor,
-                  multi : true
-                },
-                ErrorService
+  providers : [ CategoryService, ExpenseService
               ],
   bootstrap: [AppComponent]
 })
